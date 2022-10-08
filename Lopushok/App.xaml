@@ -11,9 +11,5 @@
         <Style TargetType="Button">
             <Setter Property="Background" Value="#CEFFF9"/>
         </Style>
-
-        <Style TargetType="{x:Type Control}">
-            <Setter Property="FontFamily" Value="Gabriola"/>
-        </Style>
     </Application.Resources>
 </Application>

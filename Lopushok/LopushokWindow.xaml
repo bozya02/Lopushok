@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Lopushok"
         mc:Ignorable="d"
-        Title="Лопушок" Height="450" Width="800">
+        Title="Лопушок" Height="450" Width="800"
+        FontFamily="Gabriola">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
