@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Lopushok"
         mc:Ignorable="d"
-        Title="Лопушок" Height="450" Width="800"
+        Title="Лопушок" Height="550" Width="800"
         FontFamily="Gabriola">
     <Grid>
         <Grid.RowDefinitions>
@@ -13,22 +13,16 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Grid>
+        <Grid Margin="10">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="80"/>
                 <ColumnDefinition/>
-                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="80"/>
             </Grid.ColumnDefinitions>
 
-            <Image Source="/Resources/logo.png" Width="80" Grid.Column="0"/>
+            <Image Source="/Resources/logo.png" Grid.Column="0"/>
 
-            <TextBlock Text="{Binding pageTitle}" Grid.Column="1" FontSize="30"/>
-
-            <StackPanel x:Name="spButtons" Orientation="Horizontal" Grid.Column="2">
-                <Button x:Name="btnBack" Content="Назад" Click="btnBack_Click"/>
-                <Button x:Name="btnForward" Content="Вперед" Click="btnForward_Click"/>
-            </StackPanel>
+            <TextBlock Text="Лопушок" Grid.Column="1" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </Grid>
-        <Frame x:Name="frame" Grid.Row="1" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>
