@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
+using System.Collections.ObjectModel;
 
 namespace Lopushok
 {
@@ -22,13 +23,15 @@ namespace Lopushok
     /// </summary>
     public partial class LopushokWindow : Window
     {
-        public List<Product> Products { get; set; }
+        /// <summary>
+        /// My text
+        /// </summary>
+        public ObservableCollection<Product> Products { get; set; }
         public LopushokWindow()
         {
             InitializeComponent();
 
             Products = DataAccess.GetProducts();
-            
             this.DataContext = this;
         }
     }
