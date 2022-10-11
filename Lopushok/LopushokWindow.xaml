@@ -23,7 +23,6 @@
             </Grid.ColumnDefinitions>
 
             <Image Source="/Resources/logo.png" Grid.Column="0"/>
-
             <TextBlock Text="Лопушок" Grid.Column="1" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </Grid>
 
