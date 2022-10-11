@@ -22,9 +22,12 @@ namespace Lopushok
     /// </summary>
     public partial class LopushokWindow : Window
     {
+        public List<Product> Products { get; set; }
         public LopushokWindow()
         {
             InitializeComponent();
+            Products = DataAccess.GetProducts();
+            DataContext = Products;
         }
     }
 }
