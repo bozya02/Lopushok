@@ -9,7 +9,7 @@ namespace Lopushok.DB
 {
     public static class DataAccess
     {
-        public static ObservableCollection<Product> GetProducts() => new ObservableCollection<Product>(LopushokEntities.GetContext().Products);
+        public static List<Product> GetProducts() => LopushokEntities.GetContext().Products.ToList();
         public static List<ProductType> GetProductTypes() => LopushokEntities.GetContext().ProductTypes.ToList();
         public static List<Material> GetMaterials() => LopushokEntities.GetContext().Materials.ToList();
         public static List<MaterialType> GetMaterialTypes() => LopushokEntities.GetContext().MaterialTypes.ToList();

@@ -23,49 +23,9 @@
             </Grid.ColumnDefinitions>
 
             <Image Source="/Resources/logo.png" Grid.Column="0"/>
-            <TextBlock Text="Лопушок" Grid.Column="1" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Text="{Binding pageTitle}" Grid.Column="1" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </Grid>
 
-        <ListView x:Name="lvProducts" ItemsSource="{Binding Products}" Grid.Row="1" HorizontalContentAlignment="Stretch">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <Border Margin="5" BorderBrush="Black" BorderThickness="1">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="auto"/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition Width="auto"/>
-                            </Grid.ColumnDefinitions>
-                            <Image Width="80" Height="60" Margin="10 20 30 20" Grid.Column="0">
-                                <Image.Source>
-                                    <Binding Path="Image">
-                                        <Binding.TargetNullValue>
-                                            <ImageSource>/Resources/default_image.png</ImageSource>
-                                        </Binding.TargetNullValue>
-                                    </Binding>
-                                </Image.Source>
-                            </Image>
-                            <StackPanel Grid.Column="1">
-                                <TextBlock FontSize="30" Margin="0 0 0 -20">
-                                    <Run Text="{Binding ProductType.Name}"/>
-                                    <Run Text="|"/>
-                                    <Run Text="{Binding Name}"/>
-                                </TextBlock>
-                                <TextBlock Text="{Binding Id}" FontSize="20" TextWrapping="Wrap" Margin="0 0 0 -10"/>
-                                <TextBlock FontSize="20" TextWrapping="Wrap" HorizontalAlignment="Left">
-                                    <Run Text="Материалы:"/>
-                                    <Run Text="{Binding Materials}"/>
-                                </TextBlock>
-                            </StackPanel>
-
-                            <TextBlock Grid.Column="2" HorizontalAlignment="Right" FontSize="30" Padding="0 0 20 0">
-                                <Run Text="{Binding MinPrice}"/>
-                                <Run Text="руб."/>
-                            </TextBlock>
-                        </Grid>
-                    </Border>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+        <Frame x:Name="frame" Grid.Row="1" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>

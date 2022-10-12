@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
 using System.Collections.ObjectModel;
+using Lopushok.Pages;
 
 namespace Lopushok
 {
@@ -23,16 +24,18 @@ namespace Lopushok
     /// </summary>
     public partial class LopushokWindow : Window
     {
-        /// <summary>
-        /// My text
-        /// </summary>
-        public ObservableCollection<Product> Products { get; set; }
+        public string pageTitle { get; set; }
         public LopushokWindow()
         {
             InitializeComponent();
+            frame.Navigated += Frame_Navigated;
+            frame.NavigationService.Navigate(new ProductsListPage());
+        }
 
-            Products = DataAccess.GetProducts();
-            this.DataContext = this;
+        private void Frame_Navigated(object sender, NavigationEventArgs e)
+        {
+            var pageContent = frame.Content;
+            pageTitle = (pageContent as Page).Title;
         }
     }
 }
