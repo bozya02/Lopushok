@@ -23,11 +23,41 @@ namespace Lopushok
     public partial class LopushokWindow : Window
     {
         public List<Product> Products { get; set; }
+        public string Name { get; set; }
+
+        public List<string> SortTypes { get; set; }
+        public List<ProductType> ProductTypes  { get; set; }
+
         public LopushokWindow()
         {
             InitializeComponent();
             Products = DataAccess.GetProducts();
-            DataContext = Products;
+
+            SortTypes = new List<string> 
+            {
+                "Без сортировки",
+                "Наименование по убыванию", "Наименование по возрастанию",
+                "Номер цеха по убыванию",   "Номер цеха по возрастанию", 
+                "Минимальная стоимость по убыванию", "Минимальная стоимость по возрастанию"
+            };
+            ProductTypes = DataAccess.GetProductTypes();
+            ProductTypes.Insert(0, new ProductType { Name = "Все типы" });
+            DataContext = this;
+        }
+
+        private void SearchBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            ProductsList.ItemsSource = Products.Where(product => product.Name.ToLower().Contains(SearchBox.Text.ToLower()));
+        }
+
+        private void cbSort_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
+        }
+
+        private void cbFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

@@ -7,6 +7,10 @@
         <Style TargetType="Grid">
             <Setter Property="Background" Value="#FFFFFF"/>
         </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="FontSize" Value="25"/>
+        </Style>
+        <Style TargetType=""
 
         <Style TargetType="Button">
             <Setter Property="Background" Value="#CEFFF9"/>
