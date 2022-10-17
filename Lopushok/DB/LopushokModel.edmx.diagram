@@ -10,7 +10,6 @@
         <EntityTypeShape EntityType="LopushokModel.Product" Width="1.5" PointX="3" PointY="1" />
         <EntityTypeShape EntityType="LopushokModel.ProductMaterial" Width="1.5" PointX="5.25" PointY="1.5" />
         <EntityTypeShape EntityType="LopushokModel.ProductType" Width="1.5" PointX="0.75" PointY="5.625" />
-        <EntityTypeShape EntityType="LopushokModel.sysdiagram" Width="1.5" PointX="2.75" PointY="4.75" />
         <EntityTypeShape EntityType="LopushokModel.Unit" Width="1.5" PointX="0.75" PointY="8.375" />
         <EntityTypeShape EntityType="LopushokModel.Workshop" Width="1.5" PointX="0.75" PointY="1.625" />
         <AssociationConnector Association="LopushokModel.FK_Material_MaterialType" />

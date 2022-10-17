@@ -68,6 +68,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Windows\AddProductWindow.xaml.cs">
+      <DependentUpon>AddProductWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="LopushokWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -108,9 +111,6 @@
     <Compile Include="DB\ProductType.cs">
       <DependentUpon>LopushokModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DB\sysdiagram.cs">
-      <DependentUpon>LopushokModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="DB\Unit.cs">
       <DependentUpon>LopushokModel.tt</DependentUpon>
     </Compile>
@@ -121,6 +121,10 @@
       <DependentUpon>LopushokWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Windows\AddProductWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -162,7 +166,9 @@
   <ItemGroup>
     <Resource Include="Resources\logo.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Pages\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="DB\LopushokModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

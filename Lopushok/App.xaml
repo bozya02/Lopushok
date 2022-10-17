@@ -10,7 +10,12 @@
         <Style TargetType="TextBox">
             <Setter Property="FontSize" Value="25"/>
         </Style>
-        <Style TargetType=""
+        <Style TargetType="ComboBoxItem">
+            <Setter Property="FontSize" Value="25"/>
+        </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="FontSize" Value="25"/>
+        </Style>
 
         <Style TargetType="Button">
             <Setter Property="Background" Value="#CEFFF9"/>
