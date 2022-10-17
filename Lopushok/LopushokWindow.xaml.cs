@@ -36,6 +36,7 @@ namespace Lopushok
         {
             var pageContent = frame.Content;
             pageTitle = (pageContent as Page).Title;
+            tbTitle.Text = pageTitle;
         }
     }
 }

@@ -39,9 +39,9 @@
         </EntityType>
         <EntityType Name="ProductMaterial">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="ProductId" />
+            <PropertyRef Name="MaterialId" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ProductId" Type="int" Nullable="false" />
           <Property Name="MaterialId" Type="int" Nullable="false" />
           <Property Name="MaterialQuantity" Type="int" />
@@ -264,9 +264,9 @@
         </EntityType>
         <EntityType Name="ProductMaterial">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="ProductId" />
+            <PropertyRef Name="MaterialId" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ProductId" Type="Int32" Nullable="false" />
           <Property Name="MaterialId" Type="Int32" Nullable="false" />
           <Property Name="MaterialQuantity" Type="Int32" />
@@ -428,7 +428,6 @@
                 <ScalarProperty Name="MaterialQuantity" ColumnName="MaterialQuantity" />
                 <ScalarProperty Name="MaterialId" ColumnName="MaterialId" />
                 <ScalarProperty Name="ProductId" ColumnName="ProductId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

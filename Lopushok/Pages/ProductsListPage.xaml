@@ -44,7 +44,7 @@
                                     <Run Text="{Binding Name}"/>
                                 </TextBlock>
                                 <TextBlock Text="{Binding Id}" FontSize="20" TextWrapping="Wrap"/>
-                                <TextBlock FontSize="20" TextWrapping="Wrap" HorizontalAlignment="Left">
+                                <TextBlock FontSize="20" TextWrapping="Wrap" HorizontalAlignment="Left" Width="480">
                                     <Run Text="Материалы:"/>
                                     <Run Text="{Binding Materials}"/>
                                 </TextBlock>

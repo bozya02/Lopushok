@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:Lopushok"
         mc:Ignorable="d"
         Title="Лопушок"
-        Height="550" Width="800"
-        MinHeight="550" MinWidth="800"
+        Height="650" Width="900"
+        MinHeight="650" MinWidth="900"
         FontFamily="Gabriola">
     <Grid>
         <Grid.RowDefinitions>
@@ -23,7 +23,7 @@
             </Grid.ColumnDefinitions>
 
             <Image Source="/Resources/logo.png" Grid.Column="0"/>
-            <TextBlock Text="{Binding pageTitle}" Grid.Column="1" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock x:Name="tbTitle" Text="{Binding pageTitle}" Grid.Column="1" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </Grid>
 
         <Frame x:Name="frame" Grid.Row="1" NavigationUIVisibility="Hidden"/>
