@@ -166,9 +166,7 @@
   <ItemGroup>
     <Resource Include="Resources\logo.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Pages\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="DB\LopushokModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

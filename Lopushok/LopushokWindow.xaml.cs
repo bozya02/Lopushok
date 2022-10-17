@@ -109,7 +109,6 @@ namespace Lopushok
         {
             var window = new Windows.ProductWindow();
             window.ShowDialog();
-            
         }
 
         private void ProductsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
