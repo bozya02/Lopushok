@@ -65,7 +65,8 @@
         </Grid>
 
         <ListView x:Name="ProductsList" ItemsSource="{Binding Products}" Grid.Row="1"
-                  HorizontalContentAlignment="Stretch">
+                  HorizontalContentAlignment="Stretch"
+                  SelectionChanged="ProductsList_SelectionChanged">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Border Margin="5" BorderBrush="Black" BorderThickness="1">

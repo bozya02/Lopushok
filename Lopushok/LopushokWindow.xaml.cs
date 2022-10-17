@@ -107,9 +107,15 @@ namespace Lopushok
 
         private void AddProductButton_Click(object sender, RoutedEventArgs e)
         {
-            var window = new Windows.AddProductWindow();
+            var window = new Windows.ProductWindow();
             window.ShowDialog();
             
+        }
+
+        private void ProductsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var window = new Windows.ProductWindow(ProductsList.SelectedItem as Product);
+            window.ShowDialog();
         }
     }
 }

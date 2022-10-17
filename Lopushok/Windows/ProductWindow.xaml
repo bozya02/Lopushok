@@ -1,0 +1,102 @@
+﻿<Window x:Class="Lopushok.Windows.ProductWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Lopushok.Windows"
+        mc:Ignorable="d"
+        Title="AddProductWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Text="Артикул"/>
+        <TextBox x:Name="ArticleTextBox"
+                 Text="{Binding Product.Id}"
+                 Grid.Column="1"/>
+
+
+        <TextBlock Text="Наименование"
+                   Grid.Row="1"/>
+        <TextBox x:Name="NameTextBox"
+                 Text="{Binding Product.Name}"
+                 Grid.Column="1"
+                 Grid.Row="1"/>
+        
+        <TextBlock Text="Тип продукта"
+                   Grid.Row="2"/>
+        <ComboBox x:Name="ProductTypeComboBox"
+                  ItemsSource="{Binding ProductTypes}"
+                  Grid.Column="1"
+                  Grid.Row="2"
+                  SelectedItem="{Binding Product.ProductType}">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}"/> 
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        
+        <TextBlock Text="Кол-во человек для производства"
+                   Grid.Row="3"/>
+        <TextBox x:Name="ManForProductionTextBox"
+                 Text="{Binding Product.ManForProduction}"
+                 Grid.Column="1"
+                 Grid.Row="3"/>
+        
+        <TextBlock Text="№ цеха"
+                   Grid.Column="2"/>
+        <ComboBox x:Name="WorkshopComboBox"
+                  ItemsSource="{Binding Workshops}"
+                  Grid.Column="3"
+                  Grid.Row="0"
+                  SelectedItem="{Binding Product.Workshop}">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}"/>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+
+        <TextBlock Text="Изображение"
+                   Grid.Column="2"
+                   Grid.Row="1"/>
+        <Image Source="{Binding Product.Image}"
+               Height="100"
+               Grid.Column="3"
+               Grid.Row="1"/>
+
+        <TextBlock Text="Минимальная стоимость"
+                   Grid.Column="2"
+                   Grid.Row="2"/>
+
+        <TextBox x:Name="MinPriceTextBox"
+                 Text="{Binding Product.MinPrice}"
+                 Grid.Column="3"
+                 Grid.Row="2"/>
+
+        <TextBlock Text="Подробное описание"
+                   Grid.Column="2"
+                   Grid.Row="3"/>
+        <TextBox x:Name="DescriprionTextBox"
+                 Text="{Binding Product.Description}"
+                 Grid.Column="3"
+                 Grid.Row="3"/>
+
+        <Button x:Name="SaveButton"
+                Content="Сохранить"
+                Click="SaveButton_Click"
+                Grid.Row="4"/>
+    </Grid>
+</Window>
