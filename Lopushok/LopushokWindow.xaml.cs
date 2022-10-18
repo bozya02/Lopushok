@@ -24,10 +24,10 @@ namespace Lopushok
     public partial class LopushokWindow : Window
     {
         public List<Product> Products { get; set; }
+        public List<Product> ProductsForSearch { get; set; }
         public string Name { get; set; }
 
         public int PageNumber { get; set; } = 1; 
-        public string PageNumberText { get; set; }
 
         public List<string> SortTypes { get; set; }
         public List<ProductType> ProductTypes  { get; set; }
@@ -38,7 +38,11 @@ namespace Lopushok
         {
             InitializeComponent();
             Products = DataAccess.GetProducts();
+            ProductsForSearch = Products.ToList();
 
+            ProductTypes = DataAccess.GetProductTypes();
+            ProductTypes.Insert(0, new ProductType { Name = "Все типы" });
+            
             Sortings = new Dictionary<string, Func<Product, object>>
             {
                 { "Без сортировки", x => x.Id },
@@ -49,69 +53,80 @@ namespace Lopushok
                 { "Наименование по возрастанию", x => x.Name },
                 { "Наименование по убыванию", x => x.Name } //reverse
             };
-            
-
-            ProductTypes = DataAccess.GetProductTypes();
 
             ProductsList.ItemsSource = Products.Skip((PageNumber - 1) * 20).Take(20);
-            ProductTypes.Insert(0, new ProductType { Name = "Все типы" });
 
-            PageNumberText = string.Join<string>(" ", Enumerable.Range(1, (int)(Products.Count / 20)).Select(x => x.ToString()));
-            for (int i = 0; i < Products.Count / 20; i++)
+            DataContext = this;
+        }
+
+        private void SetPageNumbers()
+        {
+            PageNumbersPanel.Children.Clear();
+            int pagesCount = ProductsForSearch.Count % 20 == 0 ? ProductsForSearch.Count / 20 : ProductsForSearch.Count / 20 + 1;
+            for (int i = 0; i < pagesCount; i++)
             {
-                var hyperlink = new Hyperlink() { Foreground = new SolidColorBrush(Colors.Black),
+                var hyperlink = new Hyperlink()
+                {
+                    Foreground = new SolidColorBrush(Colors.Black),
                     FontSize = 25,
-                    TextDecorations = null};
+                    TextDecorations = null
+                };
                 hyperlink.Inlines.Add($"{i + 1}");
                 hyperlink.Click += NavigateToPage;
 
-                var textBlock = new TextBlock();
+                var textBlock = new TextBlock() { Margin = new Thickness(5, 0, 5, 0)};
                 textBlock.Inlines.Add(hyperlink);
 
                 PageNumbersPanel.Children.Add(textBlock);
             }
-
-            DataContext = this;
         }
-        private void ApplyFilters()
+
+        private void ApplyFilters(bool filtersChanged)
         {
             var filter = FilterComboBox.SelectedItem as ProductType;
             var sorting = Sortings[SortingComboBox.SelectedItem as string];
-            var text = SearchBox.Text;
-            //page
+            var text = SearchBox.Text.ToLower();
+            if (filtersChanged)
+                PageNumber = 1;
+
+            if (filter != null && sorting != null)
+            {
+                if (filter.Name != "Все типы")
+                    ProductsForSearch = Products.Where(x => x.ProductType == filter).ToList();
+                else
+                    ProductsForSearch = Products;
+
+
+                ProductsForSearch = ProductsForSearch.OrderBy(sorting).ToList();
+                if ((SortingComboBox.SelectedItem as string).Contains("убыванию"))
+                    ProductsForSearch.Reverse();
+
+
+                ProductsForSearch = ProductsForSearch.Where(product => product.Name.ToLower().Contains(text)).ToList();
+
+                ProductsList.ItemsSource = ProductsForSearch.Skip((PageNumber - 1) * 20).Take(20).ToList();
+            }
+            SetPageNumbers();
         }
         private void NavigateToPage(object sender, RoutedEventArgs e)
         {
             PageNumber = int.Parse(((sender as Hyperlink).Inlines.FirstOrDefault() as Run).Text);
-            ProductsList.ItemsSource = Products.Skip((PageNumber - 1) * 20).Take(20);
+            ApplyFilters(false);
         }
 
         private void SearchBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            ProductsList.ItemsSource = Products.Where(product => product.Name.ToLower().Contains(SearchBox.Text.ToLower()));
+            ApplyFilters(true);
         }
 
         private void SortingComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            try 
-            {
-                var products = ProductsList.ItemsSource.Cast<Product>();
-                var sort = SortingComboBox.SelectedItem.ToString();
-                products = products.OrderBy(Sortings[sort]).ToList();
-                if (sort.Contains("убыванию"))
-                    products = products.Reverse();
-
-                ProductsList.ItemsSource = products;
-            }
-            catch { }
+            ApplyFilters(true);
         }
 
         private void FilterComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var productType = FilterComboBox.SelectedItem as ProductType;
-            if (productType.Name != "Все типы")
-                ProductsList.ItemsSource = ProductsList.ItemsSource.Cast<Product>().Where(product => product.ProductType == productType);
-
+            ApplyFilters(true);
         }
 
         private void PreviousPageButton_Click(object sender, RoutedEventArgs e)
@@ -119,26 +134,23 @@ namespace Lopushok
             if (PageNumber > 1)
             {
                 PageNumber--;
-                ProductsList.ItemsSource = Products.Skip((PageNumber - 1) * 20).Take(20);
-                //PageNumberTextBlock.Text = PageNumber.ToString();
+                ApplyFilters(false);
             }
 
         }
 
         private void NextPageButton_Click(object sender, RoutedEventArgs e)
         {
-            if (PageNumber < Products.Count / 20)
+            if (PageNumber < ProductsForSearch.Count / 20)
             {
                 PageNumber++;
-                ProductsList.ItemsSource = Products.Skip((PageNumber - 1) * 20).Take(20);
-                //PageNumberTextBlock.Text = PageNumber.ToString();
+                ApplyFilters(false);
             }
         }
 
         private void AddProductButton_Click(object sender, RoutedEventArgs e)
         {
-            var window = new Windows.ProductWindow();
-            window.ShowDialog();
+            new Windows.ProductWindow().ShowDialog();
         }
 
         private void ProductsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
