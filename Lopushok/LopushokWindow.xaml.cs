@@ -50,6 +50,8 @@ namespace Lopushok
                 { "Наименование по убыванию", x => x.Name } //reverse
             };
             cbSort.ItemsSource = Sortings.Keys;
+            cbSort.SelectedIndex = 0;
+            cbSort.SelectionChanged += cbSort_SelectionChanged;
 
             ProductTypes = DataAccess.GetProductTypes();
 
@@ -57,8 +59,6 @@ namespace Lopushok
             ProductTypes.Insert(0, new ProductType { Name = "Все типы" });
 
             PageNumberText = string.Join<string>(" ", Enumerable.Range(1, (int)(Products.Count / 20)).Select(x => x.ToString()));
-
-            var t = new StackPanel { Children = { new Button { Content = "1",  } } };
 
             DataContext = this;
         }
