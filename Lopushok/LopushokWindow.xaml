@@ -38,17 +38,10 @@
                      HorizontalAlignment="Stretch"
                      TextChanged="SearchBox_TextChanged"/>
 
-            <ComboBox x:Name="cbSort" 
+            <ComboBox x:Name="cbSort"
                       Grid.Column="1"
                       Grid.Row="1"
-                      SelectedIndex="0"
-                      ItemsSource="{Binding SortTypes}"
                       SelectionChanged="cbSort_SelectionChanged">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding}"/>
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
             </ComboBox>
             <ComboBox x:Name="cbFilter" 
                       Grid.Row="1"

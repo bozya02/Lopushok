@@ -31,24 +31,29 @@ namespace Lopushok
 
         public List<string> SortTypes { get; set; }
         public List<ProductType> ProductTypes  { get; set; }
+        private Dictionary<string, Func<Product, object>> Sortings;
+
 
         public LopushokWindow()
         {
             InitializeComponent();
             Products = DataAccess.GetProducts();
 
-            SortTypes = new List<string> 
+            Sortings = new Dictionary<string, Func<Product, object>>
             {
-                "Без сортировки",
-                "Наименование по убыванию", "Наименование по возрастанию",
-                "Номер цеха по убыванию",   "Номер цеха по возрастанию", 
-                "Минимальная стоимость по убыванию", "Минимальная стоимость по возрастанию"
+                { "Без сортировки", x => x.Id },
+                { "Минимальная стоимость по убыванию", x => x.MinPrice },//reverse
+                { "Минимальная стоимость по возрастанию", x => x.MinPrice },
+                { "Номер цеха по убыванию", x => x.WorkshopId },//reverse
+                { "Номер цеха по возрастанию", x => x.WorkshopId },
+                { "Наименование по возрастанию", x => x.Name },
+                { "Наименование по убыванию", x => x.Name } //reverse
             };
+            cbSort.ItemsSource = Sortings.Keys;
+
             ProductTypes = DataAccess.GetProductTypes();
 
             ProductsList.ItemsSource = Products.Skip((PageNumber - 1) * 20).Take(20);
-
-            ProductsList.Items.SortDescriptions.Add(new SortDescription("Name", ListSortDirection.Ascending));
             ProductTypes.Insert(0, new ProductType { Name = "Все типы" });
 
             PageNumberText = string.Join<string>(" ", Enumerable.Range(1, (int)(Products.Count / 20)).Select(x => x.ToString()));
@@ -65,18 +70,14 @@ namespace Lopushok
 
         private void cbSort_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (cbSort.SelectedItem.ToString() == "Номер цеха по возрастанию")
-                ProductsList.Items.SortDescriptions[0] = new SortDescription("WorkshopId", ListSortDirection.Ascending);
-            else if (cbSort.SelectedItem.ToString() == "Номер цеха по убыванию")
-                ProductsList.Items.SortDescriptions[0] = new SortDescription("WorkshopId", ListSortDirection.Descending);
-            else if (cbSort.SelectedItem.ToString() == "Минимальная стоимость по возрастанию")
-                ProductsList.Items.SortDescriptions[0] = new SortDescription("MinPrice", ListSortDirection.Ascending);
-            else if (cbSort.SelectedItem.ToString() == "Минимальная стоимость по убыванию")
-                ProductsList.Items.SortDescriptions[0] = new SortDescription("MinPrice", ListSortDirection.Descending);
-            else if (cbSort.SelectedItem.ToString() == "Наименование по возрастанию")
-                ProductsList.Items.SortDescriptions[0] = new SortDescription("Name", ListSortDirection.Ascending);
-            else
-                ProductsList.Items.SortDescriptions[0] = new SortDescription("Name", ListSortDirection.Descending);
+            var products = ProductsList.ItemsSource.Cast<Product>();
+            var sort = cbSort.SelectedItem.ToString();
+            products = products.OrderBy(Sortings[sort]).ToList();
+            if (sort.Contains("убыванию"))
+                products = products.Reverse();
+
+            ProductsList.ItemsSource = products;
+
         }
 
         private void cbFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -113,8 +114,12 @@ namespace Lopushok
 
         private void ProductsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var window = new Windows.ProductWindow(ProductsList.SelectedItem as Product);
-            window.ShowDialog();
+            try 
+            {
+                var window = new Windows.ProductWindow(ProductsList.SelectedItem as Product);
+                window.ShowDialog();
+            }
+            catch { }
         }
     }
 }
