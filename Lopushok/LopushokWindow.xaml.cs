@@ -31,7 +31,7 @@ namespace Lopushok
 
         public List<string> SortTypes { get; set; }
         public List<ProductType> ProductTypes  { get; set; }
-        private Dictionary<string, Func<Product, object>> Sortings;
+        public Dictionary<string, Func<Product, object>> Sortings { get; set; }
 
 
         public LopushokWindow()
@@ -49,9 +49,7 @@ namespace Lopushok
                 { "Наименование по возрастанию", x => x.Name },
                 { "Наименование по убыванию", x => x.Name } //reverse
             };
-            cbSort.ItemsSource = Sortings.Keys;
-            cbSort.SelectedIndex = 0;
-            cbSort.SelectionChanged += cbSort_SelectionChanged;
+            
 
             ProductTypes = DataAccess.GetProductTypes();
 
@@ -59,8 +57,33 @@ namespace Lopushok
             ProductTypes.Insert(0, new ProductType { Name = "Все типы" });
 
             PageNumberText = string.Join<string>(" ", Enumerable.Range(1, (int)(Products.Count / 20)).Select(x => x.ToString()));
+            for (int i = 0; i < Products.Count / 20; i++)
+            {
+                var hyperlink = new Hyperlink() { Foreground = new SolidColorBrush(Colors.Black),
+                    FontSize = 25,
+                    TextDecorations = null};
+                hyperlink.Inlines.Add($"{i + 1}");
+                hyperlink.Click += NavigateToPage;
+
+                var textBlock = new TextBlock();
+                textBlock.Inlines.Add(hyperlink);
+
+                PageNumbersPanel.Children.Add(textBlock);
+            }
 
             DataContext = this;
+        }
+        private void ApplyFilters()
+        {
+            var filter = FilterComboBox.SelectedItem as ProductType;
+            var sorting = Sortings[SortingComboBox.SelectedItem as string];
+            var text = SearchBox.Text;
+            //page
+        }
+        private void NavigateToPage(object sender, RoutedEventArgs e)
+        {
+            PageNumber = int.Parse(((sender as Hyperlink).Inlines.FirstOrDefault() as Run).Text);
+            ProductsList.ItemsSource = Products.Skip((PageNumber - 1) * 20).Take(20);
         }
 
         private void SearchBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -68,20 +91,26 @@ namespace Lopushok
             ProductsList.ItemsSource = Products.Where(product => product.Name.ToLower().Contains(SearchBox.Text.ToLower()));
         }
 
-        private void cbSort_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void SortingComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var products = ProductsList.ItemsSource.Cast<Product>();
-            var sort = cbSort.SelectedItem.ToString();
-            products = products.OrderBy(Sortings[sort]).ToList();
-            if (sort.Contains("убыванию"))
-                products = products.Reverse();
+            try 
+            {
+                var products = ProductsList.ItemsSource.Cast<Product>();
+                var sort = SortingComboBox.SelectedItem.ToString();
+                products = products.OrderBy(Sortings[sort]).ToList();
+                if (sort.Contains("убыванию"))
+                    products = products.Reverse();
 
-            ProductsList.ItemsSource = products;
-
+                ProductsList.ItemsSource = products;
+            }
+            catch { }
         }
 
-        private void cbFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void FilterComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            var productType = FilterComboBox.SelectedItem as ProductType;
+            if (productType.Name != "Все типы")
+                ProductsList.ItemsSource = ProductsList.ItemsSource.Cast<Product>().Where(product => product.ProductType == productType);
 
         }
 
@@ -91,7 +120,7 @@ namespace Lopushok
             {
                 PageNumber--;
                 ProductsList.ItemsSource = Products.Skip((PageNumber - 1) * 20).Take(20);
-                PageNumberTextBlock.Text = PageNumber.ToString();
+                //PageNumberTextBlock.Text = PageNumber.ToString();
             }
 
         }
@@ -102,7 +131,7 @@ namespace Lopushok
             {
                 PageNumber++;
                 ProductsList.ItemsSource = Products.Skip((PageNumber - 1) * 20).Take(20);
-                PageNumberTextBlock.Text = PageNumber.ToString();
+                //PageNumberTextBlock.Text = PageNumber.ToString();
             }
         }
 
@@ -114,12 +143,8 @@ namespace Lopushok
 
         private void ProductsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            try 
-            {
-                var window = new Windows.ProductWindow(ProductsList.SelectedItem as Product);
-                window.ShowDialog();
-            }
-            catch { }
+            if (ProductsList.SelectedItem is Product product)
+                new Windows.ProductWindow(product).ShowDialog();
         }
     }
 }
