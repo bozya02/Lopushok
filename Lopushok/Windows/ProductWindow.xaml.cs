@@ -29,6 +29,7 @@ namespace Lopushok.Windows
         public List<ProductType> ProductTypes { get; set; }
         public List<Workshop> Workshops { get; set; }
         public List<Material> Materials { get; set; }
+        public List<Material> ProductMaterials { get; set; }
 
         public ProductWindow(Product product)
         {
@@ -38,6 +39,8 @@ namespace Lopushok.Windows
             ProductTypes = DataAccess.GetProductTypes();
             Workshops = DataAccess.GetWorkshops();
             Materials = DataAccess.GetMaterials();
+
+            ProductMaterials = Product.ProductMaterials.Select(x => x.Material).ToList();
 
             DataContext = this;
         }
@@ -70,29 +73,37 @@ namespace Lopushok.Windows
 
         private void MaterialsComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var materials = ProductMaterialsList.Items.Cast<Material>().ToList();
             var material = MaterialsComboBox.SelectedItem as Material;
+            //var material = e.AddedItems;
 
-            if (materials.Where(c => c.Name == material.Name).Count() != 0)
+            if (material == null || Product.ProductMaterials.Where(c => c.Material.Name == material.Name).Count() != 0)
                 return;
-            materials.Add(material);
+            Product.ProductMaterials.Add(new ProductMaterial { Product = Product, Material = material});
 
-            ProductMaterialsList.ItemsSource = materials;
+            ProductMaterialsList.ItemsSource = Product.ProductMaterials;
+            ProductMaterialsList.Items.Refresh();
         }
 
         private void ProductMaterialsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var materials = ProductMaterialsList.Items.Cast<Material>().ToList();
-            var material = ProductMaterialsList.SelectedItem as Material;
-            materials.Remove(material);
+            var material = ProductMaterialsList.SelectedItem as ProductMaterial;
+            Product.ProductMaterials.Remove(material);
 
-            ProductMaterialsList.ItemsSource = materials;
+            ProductMaterialsList.ItemsSource = Product.ProductMaterials;
+            ProductMaterialsList.Items.Refresh();
         }
 
         private void ManForProductionTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
+        }
+
+        private void MaterialsComboBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            MaterialsComboBox.ItemsSource = Materials.Where(Material => Material.Name.Contains(MaterialsComboBox.Text)).ToList();
+            MaterialsComboBox.IsDropDownOpen = true;
+            
         }
     }
 }

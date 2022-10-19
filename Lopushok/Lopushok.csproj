@@ -71,6 +71,7 @@
     <Compile Include="DB\Agent.cs">
       <DependentUpon>LopushokModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DB\MaterialPart.cs" />
     <Compile Include="DB\ProductPart.cs" />
     <Compile Include="DB\Sale.cs">
       <DependentUpon>LopushokModel.tt</DependentUpon>

@@ -90,7 +90,7 @@
                                 <TextBlock Text="{Binding Id}" FontSize="20"/>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="Материалы: " FontSize="20"/>
-                                    <TextBlock FontSize="18" Text="{Binding Materials}" />
+                                    <TextBlock FontSize="18" Text="{Binding Materials}" MaxWidth="300" TextWrapping="Wrap" />
                                 </StackPanel>
                             </StackPanel>
 
@@ -106,18 +106,15 @@
 
         <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Center">
             <Button x:Name="AddProductButton" Content="Добавить продукцию"
-                    Click="AddProductButton_Click"
-                    FontSize="20"/>
+                    Click="AddProductButton_Click"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Row="3" HorizontalAlignment="Right">
-            <Button x:Name="PreviousPageButton" Content="&lt;" Click="PreviousPageButton_Click"
-                    FontSize="20"/>
+            <Button x:Name="PreviousPageButton" Content="&lt;" Click="PreviousPageButton_Click"/>
             <StackPanel Orientation="Horizontal" x:Name="PageNumbersPanel">
                 
             </StackPanel>
-            <Button x:Name="NextPageButton" Content="&gt;" Click="NextPageButton_Click"
-                    FontSize="20"/>
+            <Button x:Name="NextPageButton" Content="&gt;" Click="NextPageButton_Click"/>
         </StackPanel>
     </Grid>
 </Window>
