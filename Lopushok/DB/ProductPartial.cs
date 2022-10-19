@@ -9,23 +9,9 @@ namespace Lopushok.DB
 {
     public partial class Product
     {
-        public string Materials
-        {
-            get
-            {
-                return string.Join(", ",ProductMaterials.Select(x => x.Material.Name));
-            }
-            set {}
-        }
+        public string Materials => string.Join(", ", ProductMaterials.Select(x => x.Material.Name));
 
-        public SolidColorBrush Color
-        {
-            get
-            {
-                return (ProductSales.Any(x => x.Sale.Date.Value.Month == DateTime.Today.Month) ?
+        public SolidColorBrush Color => (ProductSales.Any(x => x.Sale.Date.Value.Month == DateTime.Today.Month) ?
                     new SolidColorBrush(Colors.Transparent) : new SolidColorBrush(Colors.LightCoral));
-            }
-            set { }
-        }
     }
 }
