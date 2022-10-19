@@ -24,6 +24,8 @@
 
             <Image Source="/Resources/logo.png" Grid.Column="0"/>
             <TextBlock x:Name="tbTitle" Text="{Binding pageTitle}" Grid.Column="1" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+            <Button x:Name="btnGoBack" Content="Назад" Grid.Column="2" Margin="10" FontSize="20" Visibility="Hidden" Click="btnGoBack_Click"/> 
         </Grid>
 
         <Frame x:Name="frame" Grid.Row="1" NavigationUIVisibility="Hidden"/>

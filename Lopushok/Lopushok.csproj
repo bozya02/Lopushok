@@ -109,9 +109,6 @@
     <Compile Include="DB\ProductType.cs">
       <DependentUpon>LopushokModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DB\sysdiagram.cs">
-      <DependentUpon>LopushokModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="DB\Unit.cs">
       <DependentUpon>LopushokModel.tt</DependentUpon>
     </Compile>
@@ -122,12 +119,19 @@
       <DependentUpon>LopushokWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pages\ProductPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\ProductsListPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Pages\ProductPage.xaml.cs">
+      <DependentUpon>ProductPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\ProductsListPage.xaml.cs">
       <DependentUpon>ProductsListPage.xaml</DependentUpon>
     </Compile>

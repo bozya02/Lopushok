@@ -6,22 +6,52 @@
       xmlns:local="clr-namespace:Lopushok.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="Список продуктов">
+      Title="Список продуктов"
+      FontFamily="Gabriola">
 
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
-        <StackPanel>
-            
-        </StackPanel>
-        
-        <ListView x:Name="lvProducts" ItemsSource="{Binding Products}" Grid.Row="1" HorizontalContentAlignment="Stretch">
+        <Grid Margin="10 20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="0.6*"/>
+                <ColumnDefinition Width="0.6*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBox x:Name="tbSearch" Grid.Column="0" Margin="10 0" FontSize="30" TextChanged="tbSearch_TextChanged"/>
+
+            <ComboBox x:Name="cbSorting"
+                      Grid.Column="1"
+                      Margin="10 0"
+                      ItemsSource="{Binding Sortings.Keys}"
+                      FontSize="24"
+                      SelectedIndex="0"
+                      SelectionChanged="cbSorting_SelectionChanged"/>
+
+            <ComboBox x:Name="cbProductType"
+                      Grid.Column="2"
+                      Margin="10 0"
+                      ItemsSource="{Binding ProductTypes}"
+                      FontSize="24"
+                      SelectedIndex="0"
+                      SelectionChanged="cbProductType_SelectionChanged">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+        </Grid>
+
+        <ListView x:Name="lvProducts" ItemsSource="{Binding FilteredProducts}" Grid.Row="1" HorizontalContentAlignment="Stretch" SelectionChanged="lvProducts_SelectionChanged">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Border Margin="5" BorderBrush="Black" BorderThickness="1">
+                    <Border Margin="5" BorderBrush="Black" BorderThickness="1" MouseDown="Border_MouseDown">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="auto"/>
@@ -59,5 +89,11 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="10 0">
+            <Button x:Name="btnPreviousPage" Content="&lt;" FontSize="20" FontWeight="Bold" Click="btnPreviousPage_Click"/>
+            <TextBlock x:Name="tbPageNumber" FontSize="20"/>
+            <Button x:Name="btnNextPage" Content="&gt;" FontSize="20" FontWeight="Bold" Click="btnNextPage_Click"/>
+        </StackPanel>
     </Grid>
 </Page>

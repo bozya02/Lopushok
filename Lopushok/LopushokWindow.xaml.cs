@@ -37,6 +37,14 @@ namespace Lopushok
             var pageContent = frame.Content;
             pageTitle = (pageContent as Page).Title;
             tbTitle.Text = pageTitle;
+
+            btnGoBack.Visibility = pageContent is ProductPage ? Visibility.Visible : Visibility.Hidden;
+        }
+
+        private void btnGoBack_Click(object sender, RoutedEventArgs e)
+        {
+            if (frame.CanGoBack)
+                frame.GoBack();
         }
     }
 }
