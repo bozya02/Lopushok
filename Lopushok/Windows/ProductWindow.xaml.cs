@@ -12,8 +12,11 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Text.RegularExpressions;
 using Lopushok.DB;
 using Microsoft.Win32;
+using System.Globalization;
+using System.Threading;
 
 namespace Lopushok.Windows
 {
@@ -27,17 +30,6 @@ namespace Lopushok.Windows
         public List<Workshop> Workshops { get; set; }
         public List<Material> Materials { get; set; }
 
-        public ProductWindow()
-        {
-            InitializeComponent();
-            Product = new Product();
-
-            ProductTypes = DataAccess.GetProductTypes();
-            Workshops = DataAccess.GetWorkshops();
-            Materials = DataAccess.GetMaterials();
-
-            DataContext = this;
-        }
         public ProductWindow(Product product)
         {
             InitializeComponent();
@@ -95,6 +87,12 @@ namespace Lopushok.Windows
             materials.Remove(material);
 
             ProductMaterialsList.ItemsSource = materials;
+        }
+
+        private void ManForProductionTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
         }
     }
 }

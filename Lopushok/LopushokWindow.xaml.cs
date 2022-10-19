@@ -96,11 +96,9 @@ namespace Lopushok
                 else
                     ProductsForSearch = Products;
 
-
                 ProductsForSearch = ProductsForSearch.OrderBy(sorting).ToList();
                 if ((SortingComboBox.SelectedItem as string).Contains("убыванию"))
                     ProductsForSearch.Reverse();
-
 
                 ProductsForSearch = ProductsForSearch.Where(product => product.Name.ToLower().Contains(text)).ToList();
 
@@ -136,7 +134,6 @@ namespace Lopushok
                 PageNumber--;
                 ApplyFilters(false);
             }
-
         }
 
         private void NextPageButton_Click(object sender, RoutedEventArgs e)
@@ -150,7 +147,7 @@ namespace Lopushok
 
         private void AddProductButton_Click(object sender, RoutedEventArgs e)
         {
-            new Windows.ProductWindow().ShowDialog();
+            new Windows.ProductWindow(new Product()).ShowDialog();
         }
 
         private void ProductsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
