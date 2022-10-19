@@ -115,8 +115,11 @@ namespace Lopushok.Windows
         {
             try
             {
-                DataAccess.DeleteProduct(Product);
-                Close();
+                if(MessageBox.Show("Удалить данный продукт?", "Предупреждение", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                {
+                    DataAccess.DeleteProduct(Product);
+                    Close();
+                }
             }
             catch
             {
