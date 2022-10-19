@@ -12,28 +12,19 @@ namespace Lopushok.DB
     using System;
     using System.Collections.Generic;
     
-    public partial class Product
+    public partial class Sale
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Product()
+        public Sale()
         {
-            this.ProductMaterials = new HashSet<ProductMaterial>();
             this.SaleProducts = new HashSet<SaleProduct>();
         }
     
         public int Id { get; set; }
-        public string Name { get; set; }
-        public Nullable<decimal> MinPrice { get; set; }
-        public Nullable<int> ProductTypeId { get; set; }
-        public Nullable<int> ManForProduction { get; set; }
-        public Nullable<int> WorkshopId { get; set; }
-        public byte[] Image { get; set; }
-        public string Description { get; set; }
+        public int AgentId { get; set; }
+        public System.DateTime Date { get; set; }
     
-        public virtual ProductType ProductType { get; set; }
-        public virtual Workshop Workshop { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ProductMaterial> ProductMaterials { get; set; }
+        public virtual Agent Agent { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SaleProduct> SaleProducts { get; set; }
     }

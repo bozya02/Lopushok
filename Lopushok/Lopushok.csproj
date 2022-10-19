@@ -68,6 +68,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DB\Agent.cs">
+      <DependentUpon>LopushokModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\ProductPart.cs" />
+    <Compile Include="DB\Sale.cs">
+      <DependentUpon>LopushokModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\SaleProduct.cs">
+      <DependentUpon>LopushokModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\sysdiagram.cs">
+      <DependentUpon>LopushokModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Windows\ProductWindow.xaml.cs">
       <DependentUpon>ProductWindow.xaml</DependentUpon>
     </Compile>

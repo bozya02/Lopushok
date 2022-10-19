@@ -89,20 +89,8 @@
                                 </TextBlock>
                                 <TextBlock Text="{Binding Id}" FontSize="20"/>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="Материалы:" FontSize="20"/>
-                                    <ListView ItemsSource="{Binding ProductMaterials}">
-                                        <ListView.ItemsPanel>
-                                            <ItemsPanelTemplate>
-                                                <StackPanel Orientation="Horizontal">
-                                                </StackPanel>
-                                            </ItemsPanelTemplate>
-                                        </ListView.ItemsPanel>
-                                        <ListView.ItemTemplate>
-                                            <DataTemplate>
-                                                <TextBlock Text="{Binding Material.Name}" FontSize="20"/>
-                                            </DataTemplate>
-                                        </ListView.ItemTemplate>
-                                    </ListView>
+                                    <TextBlock Text="Материалы: " FontSize="20"/>
+                                    <TextBlock FontSize="18" Text="{Binding Materials}" />
                                 </StackPanel>
                             </StackPanel>
 

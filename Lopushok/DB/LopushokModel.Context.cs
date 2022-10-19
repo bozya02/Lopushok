@@ -32,5 +32,9 @@ namespace Lopushok.DB
         public virtual DbSet<ProductType> ProductTypes { get; set; }
         public virtual DbSet<Unit> Units { get; set; }
         public virtual DbSet<Workshop> Workshops { get; set; }
+        public virtual DbSet<Agent> Agents { get; set; }
+        public virtual DbSet<Sale> Sales { get; set; }
+        public virtual DbSet<SaleProduct> SaleProducts { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
     }
 }

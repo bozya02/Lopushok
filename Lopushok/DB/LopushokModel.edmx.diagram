@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="251ce3560d2d401bbd1c7e076db27a48" Name="Diagram1">
+      <Diagram DiagramId="251ce3560d2d401bbd1c7e076db27a48" Name="Diagram1" ZoomLevel="34">
         <EntityTypeShape EntityType="LopushokModel.Material" Width="1.5" PointX="3" PointY="8.75" />
         <EntityTypeShape EntityType="LopushokModel.MaterialType" Width="1.5" PointX="0.75" PointY="10.625" />
         <EntityTypeShape EntityType="LopushokModel.Product" Width="1.5" PointX="3" PointY="1" />
@@ -18,6 +18,13 @@
         <AssociationConnector Association="LopushokModel.FK_Product_ProductType" />
         <AssociationConnector Association="LopushokModel.FK_Product_Workshop" />
         <AssociationConnector Association="LopushokModel.FK_ProductMaterial_Product" />
+        <EntityTypeShape EntityType="LopushokModel.Agent" Width="1.5" PointX="0.75" PointY="15.375" />
+        <EntityTypeShape EntityType="LopushokModel.Sale" Width="1.5" PointX="3" PointY="15.25" />
+        <EntityTypeShape EntityType="LopushokModel.SaleProduct" Width="1.5" PointX="5.25" PointY="0.75" />
+        <EntityTypeShape EntityType="LopushokModel.sysdiagram" Width="1.5" PointX="3.375" PointY="7" />
+        <AssociationConnector Association="LopushokModel.FK_Sale_Agent" />
+        <AssociationConnector Association="LopushokModel.FK_SaleProduct_Product" />
+        <AssociationConnector Association="LopushokModel.FK_SaleProduct_Sale" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
