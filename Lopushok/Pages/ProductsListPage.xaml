@@ -90,10 +90,13 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="10 0">
+        <Button x:Name="btnAddProduct" Content="Создать продукт" VerticalAlignment="Center" HorizontalAlignment="Center"
+                Grid.Row="2" Margin="3"/>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="10 3">
             <Button x:Name="btnPreviousPage" Content="&lt;" FontSize="20" FontWeight="Bold" Click="btnPreviousPage_Click"/>
             <TextBlock x:Name="tbPageNumber" FontSize="20"/>
-            <Button x:Name="btnNextPage" Content="&gt;" FontSize="20" FontWeight="Bold" Click="btnNextPage_Click"/>
+            <Button x:Name="btnNextPage" Content="&gt;" FontSize="20" FontWeight="Bold" Click="btnNextPage_Click" />
         </StackPanel>
     </Grid>
 </Page>

@@ -9,7 +9,7 @@
         </Style>
 
         <Style TargetType="Button">
-            <Setter Property="Background" Value="#CEFFF9"/>
+            <Setter Property="Background" Value="#00CC76"/>
         </Style>
 
         <Style TargetType="TextBlock">
@@ -29,6 +29,10 @@
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="Margin" Value="15"/>
             <Setter Property="MinWidth" Value="150"/>
+        </Style>
+
+        <Style TargetType="ListView">
+            <Setter Property="Background" Value="#CEFFF9"/>
         </Style>
     </Application.Resources>
 </Application>

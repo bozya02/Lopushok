@@ -60,5 +60,15 @@ namespace Lopushok.Pages
             lvMaterials.ItemsSource = Product.ProductMaterials;
             lvMaterials.Items.Refresh();
         }
+
+        private void btnAddImage_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

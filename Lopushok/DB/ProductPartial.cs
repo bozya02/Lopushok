@@ -12,7 +12,7 @@ namespace Lopushok.DB
         {
             get
             {
-                return string.Join(", ", Enumerable.Range(0, ProductMaterials.Count).Select(i => ProductMaterials.ElementAt(i).Material.Name));
+                return string.Join(", ",ProductMaterials.Select(x => x.Material.Name));
             }
             set {}
         }

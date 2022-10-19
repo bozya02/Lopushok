@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:Lopushok"
         mc:Ignorable="d"
         Title="Лопушок"
-        Height="650" Width="900"
-        MinHeight="650" MinWidth="900"
+        Height="650" Width="1200"
+        MinHeight="650" MinWidth="1200"
         FontFamily="Gabriola">
     <Grid>
         <Grid.RowDefinitions>
