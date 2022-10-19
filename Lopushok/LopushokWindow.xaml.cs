@@ -75,6 +75,10 @@ namespace Lopushok
                 hyperlink.Click += NavigateToPage;
 
                 var textBlock = new TextBlock() { Margin = new Thickness(5, 0, 5, 0)};
+
+                if (i == PageNumber - 1)
+                    hyperlink.TextDecorations = TextDecorations.Underline;
+
                 textBlock.Inlines.Add(hyperlink);
 
                 PageNumbersPanel.Children.Add(textBlock);
@@ -109,6 +113,7 @@ namespace Lopushok
         private void NavigateToPage(object sender, RoutedEventArgs e)
         {
             PageNumber = int.Parse(((sender as Hyperlink).Inlines.FirstOrDefault() as Run).Text);
+            (sender as Hyperlink).TextDecorations = TextDecorations.Underline;
             ApplyFilters(false);
         }
 

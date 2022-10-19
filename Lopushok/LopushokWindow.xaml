@@ -104,17 +104,20 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <StackPanel Orientation="Horizontal" Grid.Row="2">
+        <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Center">
             <Button x:Name="AddProductButton" Content="Добавить продукцию"
-                    Click="AddProductButton_Click"/>
+                    Click="AddProductButton_Click"
+                    FontSize="20"/>
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Grid.Row="3">
-            <Button x:Name="PreviousPageButton" Content="&lt;" Click="PreviousPageButton_Click"/>
+        <StackPanel Orientation="Horizontal" Grid.Row="3" HorizontalAlignment="Right">
+            <Button x:Name="PreviousPageButton" Content="&lt;" Click="PreviousPageButton_Click"
+                    FontSize="20"/>
             <StackPanel Orientation="Horizontal" x:Name="PageNumbersPanel">
                 
             </StackPanel>
-            <Button x:Name="NextPageButton" Content="&gt;" Click="NextPageButton_Click"/>
+            <Button x:Name="NextPageButton" Content="&gt;" Click="NextPageButton_Click"
+                    FontSize="20"/>
         </StackPanel>
     </Grid>
 </Window>
