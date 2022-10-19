@@ -18,15 +18,16 @@ namespace Lopushok.DB
         public Product()
         {
             this.ProductMaterials = new HashSet<ProductMaterial>();
-            this.SaleProducts = new HashSet<SaleProduct>();
+            this.ProductSales = new HashSet<ProductSale>();
         }
     
         public int Id { get; set; }
+        public int Article { get; set; }
         public string Name { get; set; }
-        public Nullable<decimal> MinPrice { get; set; }
-        public Nullable<int> ProductTypeId { get; set; }
-        public Nullable<int> ManForProduction { get; set; }
-        public Nullable<int> WorkshopId { get; set; }
+        public decimal MinPrice { get; set; }
+        public int ProductTypeId { get; set; }
+        public int ManForProduction { get; set; }
+        public int WorkshopId { get; set; }
         public byte[] Image { get; set; }
         public string Description { get; set; }
     
@@ -35,6 +36,6 @@ namespace Lopushok.DB
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductMaterial> ProductMaterials { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SaleProduct> SaleProducts { get; set; }
+        public virtual ICollection<ProductSale> ProductSales { get; set; }
     }
 }

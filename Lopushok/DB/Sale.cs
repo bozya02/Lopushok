@@ -17,15 +17,15 @@ namespace Lopushok.DB
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Sale()
         {
-            this.SaleProducts = new HashSet<SaleProduct>();
+            this.ProductSales = new HashSet<ProductSale>();
         }
     
         public int Id { get; set; }
-        public int AgentId { get; set; }
-        public System.DateTime Date { get; set; }
+        public Nullable<System.DateTime> Date { get; set; }
+        public Nullable<int> AgentId { get; set; }
     
         public virtual Agent Agent { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SaleProduct> SaleProducts { get; set; }
+        public virtual ICollection<ProductSale> ProductSales { get; set; }
     }
 }

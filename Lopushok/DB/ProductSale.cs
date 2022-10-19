@@ -12,11 +12,11 @@ namespace Lopushok.DB
     using System;
     using System.Collections.Generic;
     
-    public partial class SaleProduct
+    public partial class ProductSale
     {
         public int Id { get; set; }
-        public Nullable<int> SaleId { get; set; }
         public Nullable<int> ProductId { get; set; }
+        public Nullable<int> SaleId { get; set; }
         public Nullable<int> Count { get; set; }
     
         public virtual Product Product { get; set; }

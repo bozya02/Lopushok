@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:Lopushok"
         mc:Ignorable="d"
         Title="Лопушок" Height="550" Width="800"
+        MinWidth="800" MinHeight="550"
         FontFamily="Gabriola">
     <Grid>
         <Grid.RowDefinitions>
@@ -87,7 +88,7 @@
                                     <Run Text="|"/>
                                     <Run Text="{Binding Name}"/>
                                 </TextBlock>
-                                <TextBlock Text="{Binding Id}" FontSize="20"/>
+                                <TextBlock Text="{Binding Article}" FontSize="20"/>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="Материалы: " FontSize="20"/>
                                     <TextBlock FontSize="18" Text="{Binding Materials}" MaxWidth="300" TextWrapping="Wrap" />

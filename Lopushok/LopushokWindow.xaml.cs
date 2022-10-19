@@ -56,7 +56,16 @@ namespace Lopushok
 
             ProductsList.ItemsSource = Products.Skip((PageNumber - 1) * 20).Take(20);
 
+
+            DataAccess.NewItemAddedEvent += RefreshList;
+
             DataContext = this;
+        }
+        private void RefreshList()
+        {
+            Products = DataAccess.GetProducts();
+            ProductsForSearch = Products.ToList();
+            ApplyFilters(true);
         }
 
         private void SetPageNumbers()

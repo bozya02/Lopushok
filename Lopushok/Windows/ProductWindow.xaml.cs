@@ -47,8 +47,15 @@ namespace Lopushok.Windows
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            DataAccess.SaveProduct(Product);
-            this.Close();
+            try
+            {
+                DataAccess.SaveProduct(Product);
+                Close();
+            }
+            catch
+            {
+                MessageBox.Show("Невозможно сохранить изменения", "Данные заолнены некорректно");
+            }
         }
 
         private void SelectImageButton_Click(object sender, RoutedEventArgs e)
@@ -74,7 +81,6 @@ namespace Lopushok.Windows
         private void MaterialsComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var material = MaterialsComboBox.SelectedItem as Material;
-            //var material = e.AddedItems;
 
             if (material == null || Product.ProductMaterials.Where(c => c.Material.Name == material.Name).Count() != 0)
                 return;
@@ -101,9 +107,21 @@ namespace Lopushok.Windows
 
         private void MaterialsComboBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            MaterialsComboBox.ItemsSource = Materials.Where(Material => Material.Name.Contains(MaterialsComboBox.Text)).ToList();
+            MaterialsComboBox.ItemsSource = Materials.Where(material => material.Name.ToLower().Contains(MaterialsComboBox.Text.ToLower())).ToList();
             MaterialsComboBox.IsDropDownOpen = true;
-            
+        }
+
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                DataAccess.DeleteProduct(Product);
+                Close();
+            }
+            catch
+            {
+                MessageBox.Show("Невозможно сохранить изменения", "Данные заолнены некорректно");
+            }
         }
     }
 }

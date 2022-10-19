@@ -8,6 +8,9 @@ namespace Lopushok.DB
 {
     public static class DataAccess
     {
+        public delegate void NewItemAddedDelegate();
+
+        public static event NewItemAddedDelegate NewItemAddedEvent;
         public static List<Product> GetProducts() => LopushokEntities.GetContext().Products.ToList();
         public static List<ProductType> GetProductTypes() => LopushokEntities.GetContext().ProductTypes.ToList();
         public static List<Material> GetMaterials() => LopushokEntities.GetContext().Materials.ToList();
@@ -17,9 +20,17 @@ namespace Lopushok.DB
         public static void SaveProduct(Product product)
         {
             if (!GetProducts().Contains(product))
-                GetProducts().Append(product);
+                LopushokEntities.GetContext().Products.Add(product);
 
             LopushokEntities.GetContext().SaveChanges();
+            NewItemAddedEvent.Invoke();
+        }
+        public static void DeleteProduct(Product product)
+        {
+            LopushokEntities.GetContext().Products.Remove(product);
+
+            LopushokEntities.GetContext().SaveChanges();
+            NewItemAddedEvent.Invoke();
         }
     }
 }

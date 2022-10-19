@@ -71,15 +71,33 @@
     <Compile Include="DB\Agent.cs">
       <DependentUpon>LopushokModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DB\Material.cs">
+      <DependentUpon>LopushokModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DB\MaterialPart.cs" />
+    <Compile Include="DB\MaterialType.cs">
+      <DependentUpon>LopushokModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\Product.cs">
+      <DependentUpon>LopushokModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\ProductMaterial.cs">
+      <DependentUpon>LopushokModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DB\ProductPart.cs" />
+    <Compile Include="DB\ProductSale.cs">
+      <DependentUpon>LopushokModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\ProductType.cs">
+      <DependentUpon>LopushokModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DB\Sale.cs">
       <DependentUpon>LopushokModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DB\SaleProduct.cs">
+    <Compile Include="DB\Unit.cs">
       <DependentUpon>LopushokModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DB\sysdiagram.cs">
+    <Compile Include="DB\Workshop.cs">
       <DependentUpon>LopushokModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Windows\ProductWindow.xaml.cs">
@@ -109,27 +127,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>LopushokModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="DB\Material.cs">
-      <DependentUpon>LopushokModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DB\MaterialType.cs">
-      <DependentUpon>LopushokModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DB\Product.cs">
-      <DependentUpon>LopushokModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DB\ProductMaterial.cs">
-      <DependentUpon>LopushokModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DB\ProductType.cs">
-      <DependentUpon>LopushokModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DB\Unit.cs">
-      <DependentUpon>LopushokModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DB\Workshop.cs">
-      <DependentUpon>LopushokModel.tt</DependentUpon>
     </Compile>
     <Compile Include="LopushokWindow.xaml.cs">
       <DependentUpon>LopushokWindow.xaml</DependentUpon>
