@@ -143,7 +143,8 @@ namespace Lopushok
 
         private void NextPageButton_Click(object sender, RoutedEventArgs e)
         {
-            if (PageNumber < ProductsForSearch.Count / 20)
+            int pagesCount = ProductsForSearch.Count % 20 == 0 ? ProductsForSearch.Count / 20 : ProductsForSearch.Count / 20 + 1;
+            if (PageNumber < pagesCount)
             {
                 PageNumber++;
                 ApplyFilters(false);
