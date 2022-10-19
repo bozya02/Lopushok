@@ -66,8 +66,8 @@
                   SelectionChanged="ProductsList_SelectionChanged">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Border Margin="5" BorderBrush="Black" BorderThickness="1">
-                        <Grid>
+                    <Border Margin="5" BorderBrush="Black" BorderThickness="1" >
+                        <Grid Background="{Binding Color}">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="100"/>
                                 <ColumnDefinition Width="500"/>
