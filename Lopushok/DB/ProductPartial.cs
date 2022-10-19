@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 
 namespace Lopushok.DB
 {
@@ -15,6 +16,16 @@ namespace Lopushok.DB
                 return string.Join(", ",ProductMaterials.Select(x => x.Material.Name));
             }
             set {}
+        }
+
+        public SolidColorBrush Color
+        {
+            get
+            {
+                return (ProductSales.Any(x => x.Sale.Date.Value.Month == DateTime.Today.Month) ?
+                    new SolidColorBrush(Colors.Transparent) : new SolidColorBrush(Colors.LightCoral));
+            }
+            set { }
         }
     }
 }
