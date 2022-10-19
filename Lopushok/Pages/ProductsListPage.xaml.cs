@@ -152,14 +152,8 @@ namespace Lopushok.Pages
 
         private void lvProducts_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            foreach (Product product in lvProducts.SelectedItems)
-            {
-                MessageBox.Show($"{product.Name} {product.ManForProduction} {product.Materials}");
-            }
-        }
-
-        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
-        {
+            if (lvProducts.SelectedItem as Product == null)
+                return;
             NavigationService.Navigate(new ProductPage(lvProducts.SelectedItem as Product));
         }
     }

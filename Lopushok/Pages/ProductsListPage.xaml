@@ -51,7 +51,7 @@
         <ListView x:Name="lvProducts" ItemsSource="{Binding FilteredProducts}" Grid.Row="1" HorizontalContentAlignment="Stretch" SelectionChanged="lvProducts_SelectionChanged">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Border Margin="5" BorderBrush="Black" BorderThickness="1" MouseDown="Border_MouseDown">
+                    <Border Margin="5" BorderBrush="Black" BorderThickness="1">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="auto"/>
@@ -68,12 +68,12 @@
                                 </Image.Source>
                             </Image>
                             <StackPanel Grid.Column="1">
-                                <TextBlock FontSize="30">
+                                <TextBlock FontSize="30" HorizontalAlignment="Left">
                                     <Run Text="{Binding ProductType.Name}"/>
                                     <Run Text="|"/>
                                     <Run Text="{Binding Name}"/>
                                 </TextBlock>
-                                <TextBlock Text="{Binding Id}" FontSize="20" TextWrapping="Wrap"/>
+                                <TextBlock Text="{Binding Id}" FontSize="20" TextWrapping="Wrap" HorizontalAlignment="Left"/>
                                 <TextBlock FontSize="20" TextWrapping="Wrap" HorizontalAlignment="Left" Width="480">
                                     <Run Text="Материалы:"/>
                                     <Run Text="{Binding Materials}"/>
