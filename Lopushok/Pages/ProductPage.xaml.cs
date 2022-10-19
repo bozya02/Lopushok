@@ -28,7 +28,7 @@ namespace Lopushok.Pages
         public List<Workshop> Workshops { get; set; }
         public List<ProductType> ProductTypes { get; set; }
         public List<Material> Materials{ get; set; }
-        public ProductPage(Product product)
+        public ProductPage(Product product, bool isNewProduct = false)
         {
             InitializeComponent();
 
@@ -38,6 +38,13 @@ namespace Lopushok.Pages
             Materials = DataAccess.GetMaterials();
 
             Title = Product.Name;
+
+            if (isNewProduct)
+            {
+                Title = "Новый продукт";
+                bntDelete.Visibility = Visibility.Hidden;
+            }
+
             this.DataContext = this;
         }
 
@@ -86,12 +93,38 @@ namespace Lopushok.Pages
                 MessageBox.Show("Артикул не уникален", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
+            try
+            {
+                DataAccess.SaveProduct(Product);
+            }
+            catch
+            {
+                MessageBox.Show("Введены некорректные значения", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
             DataAccess.SaveProduct(Product);
+            NavigationService.GoBack();
         }
 
         public bool IsArticleUnique()
         {
-            return DataAccess.GetProducts().Any(product => product != Product && product.Article != Product.Article);
+            return DataAccess.GetProducts().Any(product => product == Product && product.Article != Product.Article);
+        }
+
+        private void cbMaterial_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            cbMaterial.ItemsSource = Materials.FindAll(material => material.Name.ToLower().Contains(cbMaterial.Text.ToLower()));
+            cbMaterial.IsDropDownOpen = true;
+        }
+
+        private void bntDelete_Click(object sender, RoutedEventArgs e)
+        {
+            var result = MessageBox.Show("Вы точно хотите удалить данный продукт?", "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if (result == MessageBoxResult.No)
+                return;
+            DataAccess.DeleteProduct(Product);
+            NavigationService.GoBack();
         }
     }
 }

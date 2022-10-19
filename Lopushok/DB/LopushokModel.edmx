@@ -38,11 +38,11 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Article" Type="int" />
-          <Property Name="Name" Type="nvarchar" MaxLength="80" />
-          <Property Name="MinPrice" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="ProductTypeId" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="80" Nullable="false" />
+          <Property Name="MinPrice" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="ProductTypeId" Type="int" Nullable="false" />
           <Property Name="ManForProduction" Type="int" />
-          <Property Name="WorkshopId" Type="int" />
+          <Property Name="WorkshopId" Type="int" Nullable="false" />
           <Property Name="Image" Type="varbinary(max)" />
           <Property Name="Description" Type="nvarchar" MaxLength="300" />
         </EntityType>
@@ -128,7 +128,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Product_ProductType">
-          <End Role="ProductType" Type="Self.ProductType" Multiplicity="0..1" />
+          <End Role="ProductType" Type="Self.ProductType" Multiplicity="1" />
           <End Role="Product" Type="Self.Product" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ProductType">
@@ -140,7 +140,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Product_Workshop">
-          <End Role="Workshop" Type="Self.Workshop" Multiplicity="0..1" />
+          <End Role="Workshop" Type="Self.Workshop" Multiplicity="1" />
           <End Role="Product" Type="Self.Product" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Workshop">
@@ -353,11 +353,11 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Article" Type="Int32" />
-          <Property Name="Name" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
-          <Property Name="MinPrice" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="ProductTypeId" Type="Int32" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="MinPrice" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="ProductTypeId" Type="Int32" Nullable="false" />
           <Property Name="ManForProduction" Type="Int32" />
-          <Property Name="WorkshopId" Type="Int32" />
+          <Property Name="WorkshopId" Type="Int32" Nullable="false" />
           <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="Description" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ProductType" Relationship="LopushokModel.FK_Product_ProductType" FromRole="Product" ToRole="ProductType" />
@@ -480,7 +480,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Product_ProductType">
-          <End Type="LopushokModel.ProductType" Role="ProductType" Multiplicity="0..1" />
+          <End Type="LopushokModel.ProductType" Role="ProductType" Multiplicity="1" />
           <End Type="LopushokModel.Product" Role="Product" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ProductType">
@@ -492,7 +492,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Product_Workshop">
-          <End Type="LopushokModel.Workshop" Role="Workshop" Multiplicity="0..1" />
+          <End Type="LopushokModel.Workshop" Role="Workshop" Multiplicity="1" />
           <End Type="LopushokModel.Product" Role="Product" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Workshop">

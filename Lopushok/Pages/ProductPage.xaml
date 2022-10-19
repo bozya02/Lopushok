@@ -74,6 +74,8 @@
 
         <TextBlock Text="Материал" Grid.Column="2" Grid.Row="4" HorizontalAlignment="Right"/>
         <ComboBox x:Name="cbMaterial" Grid.Column="3" Grid.Row="4" ItemsSource="{Binding Materials}" MaxWidth="100"
+                  IsTextSearchEnabled="False" IsEditable="True"
+                  TextBoxBase.TextChanged="cbMaterial_TextChanged"
                   SelectionChanged="cbMaterial_SelectionChanged">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
@@ -85,7 +87,10 @@
         <Image x:Name="imgProduct" Source="{Binding Product.Image}" Grid.Row="0" Grid.Column="4" Grid.RowSpan="4" MinWidth="200" MaxWidth="300"/>
         <Button x:Name="btnAddImage" Content="Выбрать изображение" Grid.Row="4" Grid.Column="4"
                 VerticalAlignment="Center" Click="btnAddImage_Click" Margin="5 0"/>
-        
+
+        <Button x:Name="bntDelete" Content="Удалить" Grid.Row="5"
+                HorizontalAlignment="Center" VerticalAlignment="Center" Click="bntDelete_Click"/>
+
         <Button x:Name="btnSave" Content="Сохранить" Grid.Row="5" Grid.ColumnSpan="5"
                 HorizontalAlignment="Center" VerticalAlignment="Center" Click="btnSave_Click"/>
     </Grid>

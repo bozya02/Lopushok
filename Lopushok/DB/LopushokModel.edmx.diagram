@@ -5,16 +5,16 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="251ce3560d2d401bbd1c7e076db27a48" Name="Diagram1">
-        <EntityTypeShape EntityType="LopushokModel.Agent" Width="1.5" PointX="0.75" PointY="7.75" />
-        <EntityTypeShape EntityType="LopushokModel.Material" Width="1.5" PointX="3" PointY="11.25" />
-        <EntityTypeShape EntityType="LopushokModel.MaterialType" Width="1.5" PointX="0.75" PointY="10.875" />
+        <EntityTypeShape EntityType="LopushokModel.Agent" Width="1.5" PointX="0.75" PointY="13" />
+        <EntityTypeShape EntityType="LopushokModel.Material" Width="1.5" PointX="3" PointY="8.125" />
+        <EntityTypeShape EntityType="LopushokModel.MaterialType" Width="1.5" PointX="0.75" PointY="7.75" />
         <EntityTypeShape EntityType="LopushokModel.Product" Width="1.5" PointX="3" PointY="3.125" />
-        <EntityTypeShape EntityType="LopushokModel.ProductMaterial" Width="1.5" PointX="5.25" PointY="3.75" />
-        <EntityTypeShape EntityType="LopushokModel.ProductSale" Width="1.5" PointX="5.25" PointY="0.75" />
+        <EntityTypeShape EntityType="LopushokModel.ProductMaterial" Width="1.5" PointX="5.25" PointY="0.75" />
+        <EntityTypeShape EntityType="LopushokModel.ProductSale" Width="1.5" PointX="5.25" PointY="3.75" />
         <EntityTypeShape EntityType="LopushokModel.ProductType" Width="1.5" PointX="0.75" PointY="4" />
-        <EntityTypeShape EntityType="LopushokModel.Sale" Width="1.5" PointX="3" PointY="7.625" />
+        <EntityTypeShape EntityType="LopushokModel.Sale" Width="1.5" PointX="3" PointY="12.875" />
         <EntityTypeShape EntityType="LopushokModel.sysdiagram" Width="1.5" PointX="5.75" PointY="7" />
-        <EntityTypeShape EntityType="LopushokModel.Unit" Width="1.5" PointX="0.75" PointY="13.25" />
+        <EntityTypeShape EntityType="LopushokModel.Unit" Width="1.5" PointX="0.75" PointY="10.125" />
         <EntityTypeShape EntityType="LopushokModel.Workshop" Width="1.5" PointX="0.75" PointY="1" />
         <AssociationConnector Association="LopushokModel.FK_Sale_Agent" />
         <AssociationConnector Association="LopushokModel.FK_Material_MaterialType" />

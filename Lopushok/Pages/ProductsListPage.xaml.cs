@@ -52,7 +52,16 @@ namespace Lopushok.Pages
             };
 
             this.DataContext = this;
+            DataAccess.NewItemAddedEvent += DataAccess_NewItemAddedEvent;
             GeneratePageNumbers();
+        }
+
+        private void DataAccess_NewItemAddedEvent()
+        {
+            Products = DataAccess.GetProducts();
+            ApplyFilters(true);
+
+            lvProducts.Items.Refresh();
         }
 
         private void tbSearch_TextChanged(object sender, TextChangedEventArgs e)
@@ -159,7 +168,7 @@ namespace Lopushok.Pages
 
         private void btnAddProduct_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new ProductPage(new Product()));
+            NavigationService.Navigate(new ProductPage(new Product(), true));
         }
     }
 }

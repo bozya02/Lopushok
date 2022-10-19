@@ -16,5 +16,10 @@ namespace Lopushok.DB
                 _entities = new LopushokEntities();
             return _entities;
         }
+
+        public static void RefreshContext()
+        {
+            _entities = new LopushokEntities();
+        }
     }
 }
