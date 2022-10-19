@@ -156,5 +156,10 @@ namespace Lopushok.Pages
                 return;
             NavigationService.Navigate(new ProductPage(lvProducts.SelectedItem as Product));
         }
+
+        private void btnAddProduct_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new ProductPage(new Product()));
+        }
     }
 }

@@ -76,6 +76,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DB\Agent.cs">
+      <DependentUpon>LopushokModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DB\DataAccess.cs" />
     <Compile Include="DB\LopushokEntities.cs" />
     <Compile Include="DB\LopushokModel.Context.cs">
@@ -106,7 +109,16 @@
       <DependentUpon>LopushokModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DB\ProductPartial.cs" />
+    <Compile Include="DB\ProductSale.cs">
+      <DependentUpon>LopushokModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DB\ProductType.cs">
+      <DependentUpon>LopushokModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\Sale.cs">
+      <DependentUpon>LopushokModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\sysdiagram.cs">
       <DependentUpon>LopushokModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DB\Unit.cs">

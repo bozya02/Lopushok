@@ -17,8 +17,8 @@ namespace Lopushok.DB
 
         public static void SaveProduct(Product product)
         {
-            if (!GetProducts().Contains(product))
-                GetProducts().Append(product);
+            if (!GetProducts().Any(x => x == product))
+                GetProducts().Add(product);
 
             LopushokEntities.GetContext().SaveChanges();
         }

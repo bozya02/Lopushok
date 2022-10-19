@@ -27,7 +27,7 @@
         </Grid.RowDefinitions>
 
         <TextBlock Text="Ариткул" Grid.Row="0"/>
-        <TextBox x:Name="tbId" Text="{Binding Product.Id}" Grid.Row="0" Grid.Column="1"/>
+        <TextBox x:Name="tbId" Text="{Binding Product.Article}" Grid.Row="0" Grid.Column="1"/>
         
         <TextBlock Text="Наименование" Grid.Row="1"/>
         <TextBox x:Name="tbName" Text="{Binding Product.Name}" Grid.Row="1" Grid.Column="1"/>
@@ -86,7 +86,7 @@
         <Button x:Name="btnAddImage" Content="Выбрать изображение" Grid.Row="4" Grid.Column="4"
                 VerticalAlignment="Center" Click="btnAddImage_Click" Margin="5 0"/>
         
-        <Button x:Name="btnSave" Content="Выбрать изображение" Grid.Row="5" Grid.ColumnSpan="5"
+        <Button x:Name="btnSave" Content="Сохранить" Grid.Row="5" Grid.ColumnSpan="5"
                 HorizontalAlignment="Center" VerticalAlignment="Center" Click="btnSave_Click"/>
     </Grid>
 </Page>

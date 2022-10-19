@@ -12,14 +12,18 @@ namespace Lopushok.DB
     using System;
     using System.Collections.Generic;
     
-    public partial class ProductMaterial
+    public partial class Agent
     {
-        public int Id { get; set; }
-        public int ProductId { get; set; }
-        public int MaterialId { get; set; }
-        public Nullable<int> MaterialQuantity { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Agent()
+        {
+            this.Sales = new HashSet<Sale>();
+        }
     
-        public virtual Material Material { get; set; }
-        public virtual Product Product { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Sale> Sales { get; set; }
     }
 }

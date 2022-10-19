@@ -1,6 +1,8 @@
 ﻿using Lopushok.DB;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -63,12 +65,33 @@ namespace Lopushok.Pages
 
         private void btnAddImage_Click(object sender, RoutedEventArgs e)
         {
+            OpenFileDialog fileDialog = new OpenFileDialog
+            {
+                Filter = "*.png|*.png|*.jpeg|*.jpeg|*.jpg|*.jpg"
+            };
 
+            if (fileDialog.ShowDialog().Value)
+            {
+                var image = File.ReadAllBytes(fileDialog.FileName);
+                Product.Image = image;
+
+                imgProduct.Source = new BitmapImage(new Uri(fileDialog.FileName));
+            }
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
+            if (IsArticleUnique())
+            {
+                MessageBox.Show("Артикул не уникален", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            DataAccess.SaveProduct(Product);
+        }
 
+        public bool IsArticleUnique()
+        {
+            return DataAccess.GetProducts().Any(product => product != Product && product.Article != Product.Article);
         }
     }
 }

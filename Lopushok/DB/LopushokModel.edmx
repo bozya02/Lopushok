@@ -5,6 +5,13 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="LopushokModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Agent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="80" />
+        </EntityType>
         <EntityType Name="Material">
           <Key>
             <PropertyRef Name="Id" />
@@ -30,21 +37,32 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Article" Type="int" />
           <Property Name="Name" Type="nvarchar" MaxLength="80" />
           <Property Name="MinPrice" Type="decimal" Precision="18" Scale="2" />
           <Property Name="ProductTypeId" Type="int" />
           <Property Name="ManForProduction" Type="int" />
           <Property Name="WorkshopId" Type="int" />
           <Property Name="Image" Type="varbinary(max)" />
+          <Property Name="Description" Type="nvarchar" MaxLength="300" />
         </EntityType>
         <EntityType Name="ProductMaterial">
           <Key>
-            <PropertyRef Name="ProductId" />
-            <PropertyRef Name="MaterialId" />
+            <PropertyRef Name="Id" />
           </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ProductId" Type="int" Nullable="false" />
           <Property Name="MaterialId" Type="int" Nullable="false" />
           <Property Name="MaterialQuantity" Type="int" />
+        </EntityType>
+        <EntityType Name="ProductSale">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductId" Type="int" />
+          <Property Name="SaleId" Type="int" />
+          <Property Name="Count" Type="int" />
         </EntityType>
         <EntityType Name="ProductType">
           <Key>
@@ -52,6 +70,24 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Sale">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Date" Type="date" />
+          <Property Name="AgentId" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="Unit">
           <Key>
@@ -141,12 +177,52 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ProductSale_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="ProductSale" Type="Self.ProductSale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductSale">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductSale_Sale">
+          <End Role="Sale" Type="Self.Sale" Multiplicity="0..1" />
+          <End Role="ProductSale" Type="Self.ProductSale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sale">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductSale">
+              <PropertyRef Name="SaleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sale_Agent">
+          <End Role="Agent" Type="Self.Agent" Multiplicity="0..1" />
+          <End Role="Sale" Type="Self.Sale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agent">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Sale">
+              <PropertyRef Name="AgentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="LopushokModelStoreContainer">
+          <EntitySet Name="Agent" EntityType="Self.Agent" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Material" EntityType="Self.Material" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MaterialType" EntityType="Self.MaterialType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductMaterial" EntityType="Self.ProductMaterial" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductSale" EntityType="Self.ProductSale" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductType" EntityType="Self.ProductType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sale" EntityType="Self.Sale" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Unit" EntityType="Self.Unit" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Workshop" EntityType="Self.Workshop" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Material_MaterialType" Association="Self.FK_Material_MaterialType">
@@ -173,19 +249,39 @@
             <End Role="Product" EntitySet="Product" />
             <End Role="ProductMaterial" EntitySet="ProductMaterial" />
           </AssociationSet>
+          <AssociationSet Name="FK_ProductSale_Product" Association="Self.FK_ProductSale_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ProductSale" EntitySet="ProductSale" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductSale_Sale" Association="Self.FK_ProductSale_Sale">
+            <End Role="Sale" EntitySet="Sale" />
+            <End Role="ProductSale" EntitySet="ProductSale" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sale_Agent" Association="Self.FK_Sale_Agent">
+            <End Role="Agent" EntitySet="Agent" />
+            <End Role="Sale" EntitySet="Sale" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="LopushokModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="LopushokEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Agents" EntityType="LopushokModel.Agent" />
           <EntitySet Name="Materials" EntityType="LopushokModel.Material" />
           <EntitySet Name="MaterialTypes" EntityType="LopushokModel.MaterialType" />
           <EntitySet Name="Products" EntityType="LopushokModel.Product" />
           <EntitySet Name="ProductMaterials" EntityType="LopushokModel.ProductMaterial" />
+          <EntitySet Name="ProductSales" EntityType="LopushokModel.ProductSale" />
           <EntitySet Name="ProductTypes" EntityType="LopushokModel.ProductType" />
+          <EntitySet Name="Sales" EntityType="LopushokModel.Sale" />
+          <EntitySet Name="sysdiagrams" EntityType="LopushokModel.sysdiagram" />
           <EntitySet Name="Units" EntityType="LopushokModel.Unit" />
           <EntitySet Name="Workshops" EntityType="LopushokModel.Workshop" />
+          <AssociationSet Name="FK_Sale_Agent" Association="LopushokModel.FK_Sale_Agent">
+            <End Role="Agent" EntitySet="Agents" />
+            <End Role="Sale" EntitySet="Sales" />
+          </AssociationSet>
           <AssociationSet Name="FK_Material_MaterialType" Association="LopushokModel.FK_Material_MaterialType">
             <End Role="MaterialType" EntitySet="MaterialTypes" />
             <End Role="Material" EntitySet="Materials" />
@@ -210,7 +306,23 @@
             <End Role="Product" EntitySet="Products" />
             <End Role="ProductMaterial" EntitySet="ProductMaterials" />
           </AssociationSet>
+          <AssociationSet Name="FK_ProductSale_Product" Association="LopushokModel.FK_ProductSale_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="ProductSale" EntitySet="ProductSales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductSale_Sale" Association="LopushokModel.FK_ProductSale_Sale">
+            <End Role="Sale" EntitySet="Sales" />
+            <End Role="ProductSale" EntitySet="ProductSales" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Agent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Sales" Relationship="LopushokModel.FK_Sale_Agent" FromRole="Agent" ToRole="Sale" />
+        </EntityType>
         <EntityType Name="Material">
           <Key>
             <PropertyRef Name="Id" />
@@ -240,26 +352,40 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Article" Type="Int32" />
           <Property Name="Name" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
           <Property Name="MinPrice" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="ProductTypeId" Type="Int32" />
           <Property Name="ManForProduction" Type="Int32" />
           <Property Name="WorkshopId" Type="Int32" />
           <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ProductType" Relationship="LopushokModel.FK_Product_ProductType" FromRole="Product" ToRole="ProductType" />
           <NavigationProperty Name="Workshop" Relationship="LopushokModel.FK_Product_Workshop" FromRole="Product" ToRole="Workshop" />
           <NavigationProperty Name="ProductMaterials" Relationship="LopushokModel.FK_ProductMaterial_Product" FromRole="Product" ToRole="ProductMaterial" />
+          <NavigationProperty Name="ProductSales" Relationship="LopushokModel.FK_ProductSale_Product" FromRole="Product" ToRole="ProductSale" />
         </EntityType>
         <EntityType Name="ProductMaterial">
           <Key>
-            <PropertyRef Name="ProductId" />
-            <PropertyRef Name="MaterialId" />
+            <PropertyRef Name="Id" />
           </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ProductId" Type="Int32" Nullable="false" />
           <Property Name="MaterialId" Type="Int32" Nullable="false" />
           <Property Name="MaterialQuantity" Type="Int32" />
           <NavigationProperty Name="Material" Relationship="LopushokModel.FK_ProductMaterial_Material" FromRole="ProductMaterial" ToRole="Material" />
           <NavigationProperty Name="Product" Relationship="LopushokModel.FK_ProductMaterial_Product" FromRole="ProductMaterial" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="ProductSale">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductId" Type="Int32" />
+          <Property Name="SaleId" Type="Int32" />
+          <Property Name="Count" Type="Int32" />
+          <NavigationProperty Name="Product" Relationship="LopushokModel.FK_ProductSale_Product" FromRole="ProductSale" ToRole="Product" />
+          <NavigationProperty Name="Sale" Relationship="LopushokModel.FK_ProductSale_Sale" FromRole="ProductSale" ToRole="Sale" />
         </EntityType>
         <EntityType Name="ProductType">
           <Key>
@@ -268,6 +394,26 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Products" Relationship="LopushokModel.FK_Product_ProductType" FromRole="ProductType" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Sale">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="AgentId" Type="Int32" />
+          <NavigationProperty Name="Agent" Relationship="LopushokModel.FK_Sale_Agent" FromRole="Sale" ToRole="Agent" />
+          <NavigationProperty Name="ProductSales" Relationship="LopushokModel.FK_ProductSale_Sale" FromRole="Sale" ToRole="ProductSale" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="Unit">
           <Key>
@@ -285,6 +431,18 @@
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Products" Relationship="LopushokModel.FK_Product_Workshop" FromRole="Workshop" ToRole="Product" />
         </EntityType>
+        <Association Name="FK_Sale_Agent">
+          <End Type="LopushokModel.Agent" Role="Agent" Multiplicity="0..1" />
+          <End Type="LopushokModel.Sale" Role="Sale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agent">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Sale">
+              <PropertyRef Name="AgentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Material_MaterialType">
           <End Type="LopushokModel.MaterialType" Role="MaterialType" Multiplicity="0..1" />
           <End Type="LopushokModel.Material" Role="Material" Multiplicity="*" />
@@ -359,12 +517,44 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ProductSale_Product">
+          <End Type="LopushokModel.Product" Role="Product" Multiplicity="0..1" />
+          <End Type="LopushokModel.ProductSale" Role="ProductSale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductSale">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductSale_Sale">
+          <End Type="LopushokModel.Sale" Role="Sale" Multiplicity="0..1" />
+          <End Type="LopushokModel.ProductSale" Role="ProductSale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sale">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductSale">
+              <PropertyRef Name="SaleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="LopushokModelStoreContainer" CdmEntityContainer="LopushokEntities">
+          <EntitySetMapping Name="Agents">
+            <EntityTypeMapping TypeName="LopushokModel.Agent">
+              <MappingFragment StoreEntitySet="Agent">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Materials">
             <EntityTypeMapping TypeName="LopushokModel.Material">
               <MappingFragment StoreEntitySet="Material">
@@ -390,12 +580,14 @@
           <EntitySetMapping Name="Products">
             <EntityTypeMapping TypeName="LopushokModel.Product">
               <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="WorkshopId" ColumnName="WorkshopId" />
                 <ScalarProperty Name="ManForProduction" ColumnName="ManForProduction" />
                 <ScalarProperty Name="ProductTypeId" ColumnName="ProductTypeId" />
                 <ScalarProperty Name="MinPrice" ColumnName="MinPrice" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Article" ColumnName="Article" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -406,6 +598,17 @@
                 <ScalarProperty Name="MaterialQuantity" ColumnName="MaterialQuantity" />
                 <ScalarProperty Name="MaterialId" ColumnName="MaterialId" />
                 <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductSales">
+            <EntityTypeMapping TypeName="LopushokModel.ProductSale">
+              <MappingFragment StoreEntitySet="ProductSale">
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="SaleId" ColumnName="SaleId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -414,6 +617,26 @@
               <MappingFragment StoreEntitySet="ProductType">
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sales">
+            <EntityTypeMapping TypeName="LopushokModel.Sale">
+              <MappingFragment StoreEntitySet="Sale">
+                <ScalarProperty Name="AgentId" ColumnName="AgentId" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="LopushokModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

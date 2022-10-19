@@ -73,7 +73,7 @@
                                     <Run Text="|"/>
                                     <Run Text="{Binding Name}"/>
                                 </TextBlock>
-                                <TextBlock Text="{Binding Id}" FontSize="20" TextWrapping="Wrap" HorizontalAlignment="Left"/>
+                                <TextBlock Text="{Binding Article}" FontSize="20" TextWrapping="Wrap" HorizontalAlignment="Left"/>
                                 <TextBlock FontSize="20" TextWrapping="Wrap" HorizontalAlignment="Left" Width="480">
                                     <Run Text="Материалы:"/>
                                     <Run Text="{Binding Materials}"/>
@@ -91,7 +91,7 @@
         </ListView>
 
         <Button x:Name="btnAddProduct" Content="Создать продукт" VerticalAlignment="Center" HorizontalAlignment="Center"
-                Grid.Row="2" Margin="3"/>
+                Grid.Row="2" Margin="3" Click="btnAddProduct_Click"/>
 
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="10 3">
             <Button x:Name="btnPreviousPage" Content="&lt;" FontSize="20" FontWeight="Bold" Click="btnPreviousPage_Click"/>
