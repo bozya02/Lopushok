@@ -48,7 +48,7 @@
             </ComboBox>
         </Grid>
 
-        <ListView x:Name="lvProducts" ItemsSource="{Binding FilteredProducts}" Grid.Row="1" HorizontalContentAlignment="Stretch" SelectionChanged="lvProducts_SelectionChanged">
+        <ListView x:Name="lvProducts" ItemsSource="{Binding FilteredProducts}" Grid.Row="1" HorizontalContentAlignment="Stretch" SelectionChanged="lvProducts_SelectionChanged" MouseDoubleClick="lvProducts_MouseDoubleClick">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Border Margin="5" BorderBrush="Black" BorderThickness="1">
@@ -89,6 +89,9 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+
+        <Button x:Name="btnEditPrice" Content="Изменить цену на" VerticalAlignment="Center" HorizontalAlignment="Left"
+                Grid.Row="2" Margin="3" Click="btnEditPrice_Click" Visibility="Hidden"/>
 
         <Button x:Name="btnAddProduct" Content="Создать продукт" VerticalAlignment="Center" HorizontalAlignment="Center"
                 Grid.Row="2" Margin="3" Click="btnAddProduct_Click"/>

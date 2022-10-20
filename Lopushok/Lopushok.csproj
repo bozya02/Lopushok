@@ -68,6 +68,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Windows\EditPriceWindow.xaml.cs">
+      <DependentUpon>EditPriceWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="LopushokWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -118,9 +121,6 @@
     <Compile Include="DB\Sale.cs">
       <DependentUpon>LopushokModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DB\sysdiagram.cs">
-      <DependentUpon>LopushokModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="DB\Unit.cs">
       <DependentUpon>LopushokModel.tt</DependentUpon>
     </Compile>
@@ -136,6 +136,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\ProductsListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\EditPriceWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

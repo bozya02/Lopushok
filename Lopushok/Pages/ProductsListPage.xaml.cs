@@ -160,15 +160,31 @@ namespace Lopushok.Pages
         }
 
         private void lvProducts_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (lvProducts.SelectedItem as Product == null)
-                return;
-            NavigationService.Navigate(new ProductPage(lvProducts.SelectedItem as Product));
+        {   
+            btnEditPrice.Visibility = lvProducts.SelectedItems == null ? Visibility.Hidden : Visibility.Visible;
         }
 
         private void btnAddProduct_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new ProductPage(new Product(), true));
+        }
+
+        private void lvProducts_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (lvProducts.SelectedItem as Product == null)
+                return;
+            NavigationService.Navigate(new ProductPage(lvProducts.SelectedItem as Product));
+
+        }
+
+        private void btnEditPrice_Click(object sender, RoutedEventArgs e)
+        {
+            var products = lvProducts.SelectedItems.Cast<Product>().ToList();
+
+            var result = new Windows.EditPriceWindow(products).ShowDialog();
+
+            if (result.Value)
+                MessageBox.Show("Цены успешно обновлены", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
 }

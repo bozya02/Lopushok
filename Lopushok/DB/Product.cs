@@ -24,10 +24,10 @@ namespace Lopushok.DB
         public int Id { get; set; }
         public Nullable<int> Article { get; set; }
         public string Name { get; set; }
-        public decimal MinPrice { get; set; }
-        public int ProductTypeId { get; set; }
+        public Nullable<decimal> MinPrice { get; set; }
+        public Nullable<int> ProductTypeId { get; set; }
         public Nullable<int> ManForProduction { get; set; }
-        public int WorkshopId { get; set; }
+        public Nullable<int> WorkshopId { get; set; }
         public byte[] Image { get; set; }
         public string Description { get; set; }
     
