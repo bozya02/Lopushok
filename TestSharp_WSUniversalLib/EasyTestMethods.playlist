@@ -1,0 +1,144 @@
+<Playlist Version="2.0">
+  <Rule Name="Includes" Match="Any">
+    <Rule Match="All">
+      <Property Name="Solution" />
+      <Rule Match="Any">
+        <Rule Match="All">
+          <Property Name="Project" Value="TestSharp_WSUniversalLib" />
+          <Rule Match="Any">
+            <Rule Match="All">
+              <Property Name="Namespace" Value="TestSharp_WSUniversalLib" />
+              <Rule Match="Any">
+                <Rule Match="All">
+                  <Property Name="Class" Value="CalculationTest" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="TestSharp_WSUniversalLib.CalculationTest.QuantityForProduct_Easy_01" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="QuantityForProduct_Easy_01" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="TestSharp_WSUniversalLib.CalculationTest.QuantityForProduct_Easy_02" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="QuantityForProduct_Easy_02" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="TestSharp_WSUniversalLib.CalculationTest.QuantityForProduct_Easy_03" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="QuantityForProduct_Easy_03" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="TestSharp_WSUniversalLib.CalculationTest.QuantityForProduct_Easy_04" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="QuantityForProduct_Easy_04" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="TestSharp_WSUniversalLib.CalculationTest.QuantityForProduct_Easy_05" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="QuantityForProduct_Easy_05" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="TestSharp_WSUniversalLib.CalculationTest.QuantityForProduct_Easy_06" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="QuantityForProduct_Easy_06" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="TestSharp_WSUniversalLib.CalculationTest.QuantityForProduct_Easy_07" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="QuantityForProduct_Easy_07" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="TestSharp_WSUniversalLib.CalculationTest.QuantityForProduct_Easy_08" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="QuantityForProduct_Easy_08" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="TestSharp_WSUniversalLib.CalculationTest.QuantityForProduct_Easy_09" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="QuantityForProduct_Easy_09" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="TestSharp_WSUniversalLib.CalculationTest.QuantityForProduct_Easy_10" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="QuantityForProduct_Easy_10" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="TestSharp_WSUniversalLib.CalculationTest.QuantityForProduct_Easy_11" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="QuantityForProduct_Easy_11" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="TestSharp_WSUniversalLib.CalculationTest.QuantityForProduct_Easy_12" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="QuantityForProduct_Easy_12" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="TestSharp_WSUniversalLib.CalculationTest.QuantityForProduct_Easy_13" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="QuantityForProduct_Easy_13" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="TestSharp_WSUniversalLib.CalculationTest.QuantityForProduct_Easy_14" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="QuantityForProduct_Easy_14" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="TestSharp_WSUniversalLib.CalculationTest.QuantityForProduct_Easy_15" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="QuantityForProduct_Easy_15" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="TestSharp_WSUniversalLib.CalculationTest.QuantityForProduct_Easy_16" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="QuantityForProduct_Easy_16" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="TestSharp_WSUniversalLib.CalculationTest.QuantityForProduct_Easy_17" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="QuantityForProduct_Easy_17" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="TestSharp_WSUniversalLib.CalculationTest.QuantityForProduct_Easy_18" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="QuantityForProduct_Easy_18" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="TestSharp_WSUniversalLib.CalculationTest.QuantityForProduct_Easy_19" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="QuantityForProduct_Easy_19" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="TestSharp_WSUniversalLib.CalculationTest.QuantityForProduct_Easy_20" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="QuantityForProduct_Easy_20" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+              </Rule>
+            </Rule>
+          </Rule>
+        </Rule>
+      </Rule>
+    </Rule>
+  </Rule>
+</Playlist>

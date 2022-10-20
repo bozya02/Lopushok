@@ -95,8 +95,8 @@
         <Button x:Name="btnAddImage" Content="Выбрать изображение" Grid.Row="4" Grid.Column="4"
                 VerticalAlignment="Center" Click="btnAddImage_Click" Margin="5 0"/>
 
-        <Button x:Name="bntDelete" Content="Удалить" Grid.Row="5"
-                HorizontalAlignment="Center" VerticalAlignment="Center" Click="bntDelete_Click"/>
+        <Button x:Name="btnDelete" Content="Удалить" Grid.Row="5"
+                HorizontalAlignment="Center" VerticalAlignment="Center" Click="btnDelete_Click"/>
 
         <Button x:Name="btnSave" Content="Сохранить" Grid.Row="5" Grid.ColumnSpan="5"
                 HorizontalAlignment="Center" VerticalAlignment="Center" Click="btnSave_Click"/>

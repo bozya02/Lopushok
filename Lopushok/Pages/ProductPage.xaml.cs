@@ -42,10 +42,13 @@ namespace Lopushok.Pages
             if (isNewProduct)
             {
                 Title = "Новый продукт";
-                bntDelete.Visibility = Visibility.Hidden;
+                btnDelete.Visibility = Visibility.Hidden;
             }
 
             this.DataContext = this;
+
+            if (product.ProductSales != null)
+                btnDelete.Visibility = Visibility.Hidden;
         }
 
         private void cbMaterial_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -118,7 +121,7 @@ namespace Lopushok.Pages
             cbMaterial.IsDropDownOpen = true;
         }
 
-        private void bntDelete_Click(object sender, RoutedEventArgs e)
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             var result = MessageBox.Show("Вы точно хотите удалить данный продукт?", "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (result == MessageBoxResult.No)
