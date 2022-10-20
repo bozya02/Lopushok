@@ -167,8 +167,19 @@ namespace Lopushok
 
         private void ProductsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            btnChangePrice.Visibility = ProductsList.SelectedItems.Count != 0? Visibility.Visible: Visibility.Hidden;
+        }
+
+        private void ProductsList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
             if (ProductsList.SelectedItem is Product product)
                 new Windows.ProductWindow(product).ShowDialog();
+        }
+
+        private void btnChangePrice_Click(object sender, RoutedEventArgs e)
+        {
+            var products = ProductsList.SelectedItems.Cast<Product>().ToList();
+            new Windows.ChangePriceWindow(products).ShowDialog();
         }
     }
 }

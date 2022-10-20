@@ -137,24 +137,16 @@
         <StackPanel Orientation="Vertical" Grid.Row="2" Grid.RowSpan="3" Grid.Column="2" VerticalAlignment="Center" Margin="5">
             <TextBlock Text="Материалы" Margin="0, 10"/>
             <ListView x:Name="ProductMaterialsList" ItemsSource="{Binding Product.ProductMaterials}" Height="100" SelectionChanged="ProductMaterialsList_SelectionChanged">
-                    <ListView.View>
-                        <GridView ColumnHeaderContainerStyle="{StaticResource myHeaderStyle}">
-                            <GridView.Columns>
-                                <GridViewColumn DisplayMemberBinding="{Binding Material.Name}"/>
-                                <GridViewColumn>
-                                    <GridViewColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <TextBlock  TextAlignment="Center">
-                                                <Run Text="{Binding MaterialQuantity}"/>
-                                                <Run Text="шт"/>
-                                            </TextBlock>
-                                        </DataTemplate>
-                                    </GridViewColumn.CellTemplate>
-                                </GridViewColumn>
-                            </GridView.Columns>
-                        </GridView>
-                    </ListView.View>
-                </ListView>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock  TextAlignment="Center">
+                            <Run Text="{Binding Material.Name}"/>
+                            <Run Text="{Binding MaterialQuantity}"/>
+                            <Run Text="шт"/>
+                        </TextBlock>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
             <ComboBox x:Name="MaterialsComboBox"
                       IsTextSearchEnabled="True"
                       IsEditable="True"

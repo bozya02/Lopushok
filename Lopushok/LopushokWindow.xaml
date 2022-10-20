@@ -63,6 +63,7 @@
 
         <ListView x:Name="ProductsList" ItemsSource="{Binding Products}" Grid.Row="1"
                   HorizontalContentAlignment="Stretch"
+                  MouseDoubleClick="ProductsList_MouseDoubleClick"
                   SelectionChanged="ProductsList_SelectionChanged">
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -105,10 +106,13 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Center">
-            <Button x:Name="AddProductButton" Content="Добавить продукцию"
+        <Button x:Name="btnChangePrice" Grid.Row="2" Content="Изменить стоимость"
+                Visibility="Hidden"
+                HorizontalAlignment="Left"
+                    Click="btnChangePrice_Click"/>
+        <Button x:Name="AddProductButton" Grid.Row="2" Content="Добавить продукцию"
+                    HorizontalAlignment="Center"
                     Click="AddProductButton_Click"/>
-        </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Row="3" HorizontalAlignment="Right">
             <Button x:Name="PreviousPageButton" Content="&lt;" Click="PreviousPageButton_Click"/>
