@@ -31,10 +31,13 @@ namespace Lopushok.Windows
         public List<Material> Materials { get; set; }
         public List<Material> ProductMaterials { get; set; }
 
+        public string WindowTitle { get; set; }
         public ProductWindow(Product product)
         {
             InitializeComponent();
             Product = product;
+
+            WindowTitle = product.Name == null ? "Новый продукт" : product.Name;
 
             ProductTypes = DataAccess.GetProductTypes();
             Workshops = DataAccess.GetWorkshops();

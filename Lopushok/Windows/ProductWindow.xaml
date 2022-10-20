@@ -21,7 +21,7 @@
         </Grid.RowDefinitions>
         <Image Source="/Resources/logo.png"  HorizontalAlignment="Left"/>
 
-        <TextBlock Text="Лопушок" Grid.ColumnSpan="3" FontSize="30"
+        <TextBlock Text="{Binding WindowTitle}" Grid.ColumnSpan="3" FontSize="30"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"/>
 
