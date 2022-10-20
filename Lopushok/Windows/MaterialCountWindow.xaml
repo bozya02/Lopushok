@@ -4,8 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Lopushok.Windows"
-        mc:Ignorable="d"
-        Title="MaterialCountWindow" Height="150" Width="200"
+        mc:Ignorable="d" Height="150" Width="200"
         ResizeMode="NoResize">
     <Grid>
         <Grid.ColumnDefinitions>

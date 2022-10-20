@@ -25,6 +25,7 @@ namespace Lopushok.Windows
         public MaterialCountWindow(ProductMaterial material)
         {
             Material = material;
+            Title = material.Material.Name;
             InitializeComponent();
             DataContext = Material;
         }
