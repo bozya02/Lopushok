@@ -84,10 +84,15 @@ namespace Lopushok.Windows
 
             if (material == null || Product.ProductMaterials.Where(c => c.Material.Name == material.Name).Count() != 0)
                 return;
-            Product.ProductMaterials.Add(new ProductMaterial { Product = Product, Material = material});
 
-            ProductMaterialsList.ItemsSource = Product.ProductMaterials;
-            ProductMaterialsList.Items.Refresh();
+            var productMaterial = new ProductMaterial { Product = Product, Material = material, MaterialQuantity = 0 };
+
+            if((bool)new MaterialCountWindow(productMaterial).ShowDialog()) 
+            {
+                Product.ProductMaterials.Add(productMaterial);
+                ProductMaterialsList.ItemsSource = Product.ProductMaterials;
+                ProductMaterialsList.Items.Refresh();
+            }
         }
 
         private void ProductMaterialsList_SelectionChanged(object sender, SelectionChangedEventArgs e)

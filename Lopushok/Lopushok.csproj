@@ -100,6 +100,9 @@
     <Compile Include="DB\Workshop.cs">
       <DependentUpon>LopushokModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Windows\MaterialCountWindow.xaml.cs">
+      <DependentUpon>MaterialCountWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\ProductWindow.xaml.cs">
       <DependentUpon>ProductWindow.xaml</DependentUpon>
     </Compile>
@@ -132,6 +135,10 @@
       <DependentUpon>LopushokWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Windows\MaterialCountWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\ProductWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
