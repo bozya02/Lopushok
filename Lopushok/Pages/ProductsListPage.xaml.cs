@@ -180,7 +180,6 @@ namespace Lopushok.Pages
         private void btnEditPrice_Click(object sender, RoutedEventArgs e)
         {
             var products = lvProducts.SelectedItems.Cast<Product>().ToList();
-
             var result = new Windows.EditPriceWindow(products).ShowDialog();
 
             if (result.Value)
