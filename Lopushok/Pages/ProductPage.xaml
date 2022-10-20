@@ -67,7 +67,14 @@
                   SelectionChanged="lvMaterials_SelectionChanged">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock FontSize="20" Text="{Binding Material.Name}"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock FontSize="20" Text="{Binding Material.Name}"/>
+                        <TextBlock HorizontalAlignment="Right" Margin="10 0" VerticalAlignment="Center">
+                            <TextBox Text="{Binding MaterialQuantity}" Background="#CEFFF9"
+                                     VerticalContentAlignment="Bottom" FontSize="24" Height="30"/>
+                            <Run Text="шт"/>
+                        </TextBlock>
+                    </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
