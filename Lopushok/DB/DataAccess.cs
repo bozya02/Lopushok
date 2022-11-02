@@ -32,5 +32,12 @@ namespace Lopushok.DB
             LopushokEntities.GetContext().SaveChanges();
             NewItemAddedEvent.Invoke();
         }
+
+        internal static void RemoveProductMaterial(ProductMaterial material)
+        {
+            LopushokEntities.GetContext().ProductMaterials.Remove(material);
+
+            LopushokEntities.GetContext().SaveChanges();
+        }
     }
 }

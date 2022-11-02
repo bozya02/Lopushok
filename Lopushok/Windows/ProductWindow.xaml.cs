@@ -101,10 +101,14 @@ namespace Lopushok.Windows
         private void ProductMaterialsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var material = ProductMaterialsList.SelectedItem as ProductMaterial;
-            Product.ProductMaterials.Remove(material);
+            if (material != null)
+            {
+                Product.ProductMaterials.Remove(material);
+                DataAccess.RemoveProductMaterial(material);
 
-            ProductMaterialsList.ItemsSource = Product.ProductMaterials;
-            ProductMaterialsList.Items.Refresh();
+                ProductMaterialsList.ItemsSource = Product.ProductMaterials;
+                ProductMaterialsList.Items.Refresh();
+            }
         }
 
         private void ManForProductionTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
