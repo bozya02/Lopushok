@@ -23,16 +23,21 @@ namespace Lopushok.DB
             if (!GetProducts().Any(x => x == product))
                 LopushokEntities.GetContext().Products.Add(product);
 
-            NewItemAddedEvent?.Invoke();
             LopushokEntities.GetContext().SaveChanges();
+            NewItemAddedEvent?.Invoke();
         }
 
         public static void DeleteProduct(Product product)
         {
             LopushokEntities.GetContext().Products.Remove(product);
 
-            NewItemAddedEvent?.Invoke();
             LopushokEntities.GetContext().SaveChanges();
+            NewItemAddedEvent?.Invoke();
+        }
+
+        public static void DeleteProductMaterial(ProductMaterial productMaterial)
+        {
+            LopushokEntities.GetContext().ProductMaterials.Remove(productMaterial);
         }
     }
 }

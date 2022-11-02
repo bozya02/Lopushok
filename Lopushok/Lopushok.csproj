@@ -68,6 +68,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DB\MaterialPartial.cs" />
     <Compile Include="Windows\EditPriceWindow.xaml.cs">
       <DependentUpon>EditPriceWindow.xaml</DependentUpon>
     </Compile>

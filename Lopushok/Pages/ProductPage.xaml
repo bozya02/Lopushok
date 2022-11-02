@@ -80,7 +80,8 @@
         </ListView>
 
         <TextBlock Text="Материал" Grid.Column="2" Grid.Row="4" HorizontalAlignment="Right"/>
-        <ComboBox x:Name="cbMaterial" Grid.Column="3" Grid.Row="4" ItemsSource="{Binding Materials}" MaxWidth="100"
+        <ComboBox x:Name="cbMaterial" Grid.Column="3" Grid.Row="4" ItemsSource="{Binding Materials}" MinWidth="100"
+                  FontSize="24"
                   IsTextSearchEnabled="False" IsEditable="True"
                   TextBoxBase.TextChanged="cbMaterial_TextChanged"
                   SelectionChanged="cbMaterial_SelectionChanged">
